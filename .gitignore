@@ -1,0 +1,7 @@
+*.pyc
+*.log
+*.pot
+__pycache__/
+local_settings.py
+/static
+/media
