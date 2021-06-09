@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'asistenti.apps.AsistentiConfig',
-    'pacienti.apps.PacientiConfig',
     'managementcabinet.apps.ManagementcabinetConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,7 +77,7 @@ WSGI_APPLICATION = 'cabinet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cabinetstomatologic',
+        'NAME': 'smartsoftdentdb',
         'USER':'postgres',
         'PASSWORD':'postgres',
         'HOST':'localhost',
