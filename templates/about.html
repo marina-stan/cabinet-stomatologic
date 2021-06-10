@@ -55,9 +55,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="{% url 'home' %}">Acasa</a>&nbsp;
+            <a class="nav-link" href="{% url 'home' %}">Acasă</a>&nbsp;
             <a class="nav-link active" href="{% url 'about' %}">Despre noi<a>&nbsp;
-            <a class="nav-link" href="{% url 'consultatii' %}">Consultatii online<a>
+            <a class="nav-link" href="{% url 'consultatii' %}">Consultații online<a>
             <a class="nav-link" href="http://twitter.com/Marina19982390">Twitter</a>
             <a class="nav-link" href="https://www.facebook.com/marina.stan.7982/">Facebook</a>
             <a class="nav-link" href="{% url 'contact' %}">Contact<a>
@@ -73,17 +73,17 @@
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 style='color:#524652'>Echipa de profesionisti</h1>
+          <h1 style='color:#524652'>Echipa de profesioniști</h1>
             <!-- <h1>Echipa este formata din medici dedicati</h1> -->
         </div>
       </div>
     </section>
 
-      <div class="py-5 bg-light">  
+      <div class="py-5 bg-light">
   <div class="row">
-    <h2 class="lead text-center">Echipa este formata din medici dedicati, ce pun mai inainte de orice sanatatea si siguranta pacientului!</h2>
+    <h2 class="lead text-center">Echipa este formată din medici dedicați, ce pun mai înainte de orice sănătatea și siguranța pacientului!</h2>
       <p>&nbsp<p/>
-  <img class="responsive"  style='display: block; margin-left: auto; margin-right: auto; width: 50%;' src="{% static 'pexels-rodnae-productions-6129507 (1).jpg' %}"/>
+  <img class="responsive"  style='display: block; margin-left: auto; margin-right: auto; width: 40%;' src="{% static 'pexels-rodnae-productions-6129507 (1).jpg' %}"/>
 
 
 </div>
@@ -95,11 +95,11 @@
             <hr class="featurette-divider">
     <div class="row featurette">
       <div class="col-md-7 {% if forloop.counter|divisibleby:2 %}order-md-2{% else %} {% endif %}">
-        <h2 class="featurette-heading" style='color:#524652'>{{ medic.last_name }} {{ medic.first_name }}<span class="text-muted"> - Chirurgie</span></h2>
-        <p class="lead">Operatiile sunt parte importanta din stomatologie, la noi garantam ca nu vei simtii durerea,nici inainte, nici in timpul si nici dupa operatie.</p>
+        <h2 class="featurette-heading" style='color:#524652'>{{ medic.nume_de_familie }} {{ medic.prenume }}<span class="text-muted"> - {{ medic.specializare }}</span></h2>
+        <p class="lead">{{ medic.note }}</p>
       </div>
       <div class="col-md-5">
-            <img class='w3-rount' align='{% if forloop.counter|divisibleby:2 %} {% else %}right{% endif %}' width="400" height="400" src='{{ medic.image.url }}'/>
+            <img class='w3-rount' align='{% if forloop.counter|divisibleby:2 %} {% else %}right{% endif %}' width="400" height="400" src='{{ medic.imagine.url }}'/>
       </div>
     </div>
     <!-- <hr class="featurette-divider">

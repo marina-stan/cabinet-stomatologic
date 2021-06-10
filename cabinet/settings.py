@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'cabinet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smartsoftdentdb',
+        'NAME': 'cabinetdb',
         'USER':'postgres',
         'PASSWORD':'postgres',
         'HOST':'localhost',
