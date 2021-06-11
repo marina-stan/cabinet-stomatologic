@@ -26,6 +26,8 @@ urlpatterns = [
     path('about/', views.about, name = 'about'),
     path('consultatii-online', views.consultatii, name = 'consultatii'),
     path('conectare/', views.conectare, name = 'conectare'),
+    path('logout/', views.logout, name = 'logout'),
     path('medici/', views.medici, name = 'medici'),
-    path('contul-meu', views.contulMeu, name = 'contul-meu'),
+    path('contul-meu/', views.contulMeu, name = 'contul-meu'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
