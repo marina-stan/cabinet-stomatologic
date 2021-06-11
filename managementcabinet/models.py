@@ -26,16 +26,25 @@ class Medic(Person):
     specializare = models.CharField(max_length=255, default='')
     data_absolvirii = models.DateField(blank=True, null=True)
 
+    def permisiuni():
+        return "medic"
+
 
 class Asistent(Person):
     colegiu = models.CharField(max_length=255, default='', blank=True, null=True)
     specializare = models.CharField(max_length=255, default='', blank=True, null=True)
     data_absolvirii = models.DateField(blank=True, null=True)
 
+    def permisiuni():
+        return "asistent"
+
 
 class Pacient(Person):
     persoana_de_contact = models.CharField(max_length=255, default='', blank=True, null=True)
 
+    def permisiuni():
+        return "pacient"
+        
 
 class Programare(models.Model):
     pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)

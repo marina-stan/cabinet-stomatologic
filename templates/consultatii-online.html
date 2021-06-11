@@ -86,44 +86,42 @@
                   </div>
                 </section>
               </div>
-              <div class="row  bg-light" >
-                <!-- <div class="col" style="background-image: url({% static 'pexels-scott-webb-1029622.jpg' %})"> -->
+              <div class="row  bg-light py-5" >
   <div class="col">
                 </div>
                 <div class="col">
 
                   <div class="container py-5" style='background-color: #97d6df;'>
-                    <form>
+                    <form method="post" action="mailto:marina.ghionea@gmail.com" enctype="text/plain">
                       <div class="form-group py-2">
                         <label for="exampleFormControlInput1">Adresa de email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="exampleFormControlInput1" name="mail" placeholder="nume@exemplu.com">
                       </div>
                       <div class="form-group py-2">
                         <label for="exampleFormControlSelect1">Subiect</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                        <select class="form-control" id="exampleFormControlSelect1" name:'subject'>
+                          <option>Programează o consultație</option>
+                          <option>Trimite radiografia</option>
+                          <option>Spune ce te doare</option>
+                          <option>Cere a doua părere</option>
+                          <option>Anulează programarea</option>
                         </select>
                       </div>
                       <div class="form-group py-2">
                         <label for="exampleFormControlTextarea1">Mesaj</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name:'body'></textarea>
                       </div>
                     </form>
                     <form>
                       <div class="form-group py-2">
                         <label for="exampleFormControlFile1">Adaugă fișier</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input type="file" class="form-control-file" name:'image' id="exampleFormControlFile1">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-primary mb-2">Trimite</button>
                     </form>
                   </div>
                 </div>
-                <!-- <div class="col" style="background-image: url({% static 'pexels-scott-webb-1029622.jpg' %})"> -->
 <div class="col">
                 </div>
               </div>
