@@ -5,6 +5,8 @@ from managementcabinet.models import Medic
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
+from cabinet.forms import contactformemail
+from django.core.mail import send_mail
 
 def home(request):
     return render(request, 'home.html')
@@ -42,3 +44,16 @@ def logout(request):
         auth.logout(request)
         return render(request, 'conectare.html')
     return render(request, 'conectare.html')
+
+
+def contactsendemail(request):
+	if request.method == "GET":
+		form=contactformemail()
+	else:
+		form=contactformemail(request.POST)
+		if form.is_valid():
+			fromemail=form.cleaned_data['fromemail']
+			subject=form.cleaned_data['subject']
+			body=form.cleaned_data['body']
+			send_mail(subject, body, fromemail, ['softdentsmart@gmail.com'])
+	return render(request, 'consultatii-online.html', {'form':form})
