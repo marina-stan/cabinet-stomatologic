@@ -56,14 +56,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="{% url 'home' %}">Acasa</a>&nbsp;
+            <a class="nav-link" href="{% url 'home' %}">Acasă</a>&nbsp;
             <a class="nav-link" href="{% url 'about' %}">Despre noi<a>&nbsp;
-                  <a class="nav-link" href="{% url 'consultatii' %}">Consultatii online<a>
+                  <a class="nav-link" href="{% url 'consultatii' %}">Consultații online<a>
               <a class="nav-link" href="http://twitter.com/Marina19982390">Twitter</a>
               <a class="nav-link" href="https://www.facebook.com/marina.stan.7982/">Facebook</a>
               <a class="nav-link active" href="{% url 'contact' %}">Contact<a>
-              <a class="nav-link text-end" style='color:#1dcff2' href='{% url 'conectare' %}'>Contul meu<a>
-              <a class="nav-link text-end" style='color:#e02d51' href='{% url 'conectare' %}'>Personal medical<a>
+                {% if user.is_authenticated %}
+                <a class="nav-link text-end" style='color:#e02d51' href='javascript:{document.getElementById("logout").submit()}'>Logout<a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <input type='hidden' />
+                </form>
+                {% else %}
+                <a class="nav-link text-end" style='color:#1dcff2' href='{% url 'conectare' %}'>Contul meu<a>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -75,13 +82,7 @@
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 style='color:#524652'>Contacteaza-ne acum!</h1>
-                <!-- <p>&nbsp;</p>
-                <p class="lead text-muted">Pentru a trimite email apasa butonul:</p>
-                <a href="mailto:marina.ghionea@gmail.com" class="btn btn-primary my-2">marina.ghionea@gmail.com</a>
-                <p>&nbsp;</p>
-                <p class="lead text-muted">Sau suna la:</p>
-                <a href="callto:0722.###.@@@" class="btn btn-primary my-2">0722.###.@@@</a> -->
+                <h1 style='color:#524652'>Contacteăza-ne acum!</h1>
               </div>
             </div>
           </section>
@@ -100,23 +101,23 @@
             </div>
             </div>
 
-          <!-- <iframe src="https://maps.google.com/maps?q=universitatea%20romano-americana&t=&z=13&ie=UTF8&iwloc=&output=embed" width="600" height="500" frameborder="0" style='border:0;' allowfullscreen aria-hidden='false' tabindex="0"></iframe> -->
 <div class="col">
           <div>
               <!-- <i class="fas fa-map-pin"></i> -->
-              <h4 class="lead text-muted  py-3"><span style='font-weight:bold'>Adresa:</span> Soseaua Zambetelor, Nr 3.14, Tooth</h4>
+              <h4 class="lead text-muted  py-3"><span style='font-weight:bold'>Adresa:</span> Șoseaua Zâmbetelor, Nr 3.14,</h4>
+              <h4 class="lead text-muted">Sector 7, București</h4>
               <p>&nbsp</p>
               <!-- <i class="fas fa-envelope"></i> -->
-              <p class="lead text-muted" style='font-weight:bold'>Spune ce te supara:</p>
+              <p class="lead text-muted" style='font-weight:bold'>Spune ce te supară:</p>
               <a href="mailto:marina.ghionea@gmail.com">marina.ghionea@gmail.com</a>
               <p>&nbsp</p>
               <!-- <i class="fas fa-mobile-alt"></i> -->
-              <p class="lead text-muted" style='font-weight:bold'>Fa o programare:</p>
+              <p class="lead text-muted" style='font-weight:bold'>Programează-te:</p>
               <a href="callto:0722.###.@@@">0722.###.@@@</a>
               <p>&nbsp</p>
               <p class="lead text-muted"><span style='font-weight:bold'>Program de lucru:</span></p>
-              <p class="lead text-muted">Luni-Sambata: 9-21</p>
-              <p class="lead text-muted">Duminica: 9-15</p>
+              <p class="lead text-muted">Luni-Sambată: 9-21</p>
+              <p class="lead text-muted">Duminică: 9-15</p>
           </div>
         </div>
         </div>
@@ -128,9 +129,9 @@
       <footer class="text-muted py-5">
         <div class="container text-center">
           <p class="float-end mb-1">
-            <a href=#>Politica cookies</a>&nbsp;
-            <a href=#>Politica date personale</a>&nbsp;
-            <a href=#>Termeni si conditii</a>
+            <a href=#>Politică cookies</a>&nbsp;
+            <a href=#>Politică date personale</a>&nbsp;
+            <a href=#>Termeni și condiții</a>
           </p>
         </div>
         <div class="container text-left">
