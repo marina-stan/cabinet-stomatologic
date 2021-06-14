@@ -92,11 +92,11 @@
                 <div class="col">
 
                   <div class="container py-5" style='background-color: #97d6df;'>
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                        {% csrf_token %}
                       <div class="form-group py-2">
                         <label for="id_fromemail">Adresa de email</label>
-                        <input type="email" class="form-control"type="email" name="fromemail" id="id_fromemail" placeholder="nume@exemplu.com">
+                        <input type="email" class="form-control" type="email" name="fromemail" id="id_fromemail" placeholder="nume@exemplu.com">
                       </div>
                       <div class="form-group py-2">
                         <label for="id_subject">Subiect</label>
@@ -114,8 +114,8 @@
                       </div>
 
                       <div class="form-group py-2">
-                        <label for="exampleFormControlFile1">Adaugă fișier</label>
-                        <input type="file" class="form-control-file" name:'image' id="exampleFormControlFile1">
+                        <label for="uploaded_file">Adaugă fișier</label>
+                        <input type="file" class="form-control-file" name="uploaded_file" id="uploaded_file">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-primary mb-2">Trimite</button>

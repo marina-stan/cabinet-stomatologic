@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from cabinet.forms import contactformemail
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage, send_mail
 
 def home(request):
     return render(request, 'home.html')
@@ -46,14 +46,25 @@ def logout(request):
     return render(request, 'conectare.html')
 
 
+
 def contactsendemail(request):
-	if request.method == "GET":
-		form=contactformemail()
-	else:
-		form=contactformemail(request.POST)
-		if form.is_valid():
-			fromemail=form.cleaned_data['fromemail']
-			subject=form.cleaned_data['subject']
-			body=form.cleaned_data['body']
-			send_mail(subject, body, fromemail, ['softdentsmart@gmail.com'])
-	return render(request, 'consultatii-online.html', {'form':form})
+    if request.method == "GET":
+        form = contactformemail()
+    else:
+        form = contactformemail(request.POST, request.FILES)
+        if form.is_valid():
+            fromemail = form.cleaned_data['fromemail']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            email = EmailMessage(subject, body, [fromemail], ['softdentsmart@gmail.com'])
+            try:
+                uploaded_file = request.FILES['uploaded_file']
+                email.attach(uploaded_file.name, uploaded_file.read(), uploaded_file.content_type)
+                print(uploaded_file)
+                email.send()
+                return HttpResponse('Mesajul CU atasament a fost trimis cu succces !')
+            except:
+                email.send()
+                return HttpResponse('Mesajul FARA atasament a fost trimis cu succces !')
+
+    return render(request, 'consultatii-online.html', {'form':form})

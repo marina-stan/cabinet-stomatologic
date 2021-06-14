@@ -1,7 +1,7 @@
 from django.db import models
 
 class Person(models.Model):
-   imagine = models.ImageField(upload_to='images/%Y/%m/%d', blank=True, null=True)
+   imagine = models.ImageField(upload_to='images', blank=True, null=True)
    nume_de_familie = models.CharField(max_length=255)
    prenume = models.CharField(max_length=255)
    cnp = models.CharField(max_length=255, default='')
@@ -44,7 +44,7 @@ class Pacient(Person):
 
     def permisiuni():
         return "pacient"
-        
+
 
 class Programare(models.Model):
     pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)
