@@ -28,19 +28,19 @@
 
 
   <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
     }
-  }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
   </style>
 
 
@@ -89,24 +89,31 @@
         </div>
         <div class="album py-3 bg-light">
           <div class="container">
-
             <div class="row">
-              <div class="col">
-                <h2 class="text-muted">Date personale</h2>
-              </div>
-              <div class="col">
-                {% if user == pacient.email %}
-                {% for programare in programare.all %}
-                <p class="lead">{{ programare.medic }}</p>
-                <p class="lead">{{ programare.data_si_ora }}</p>
-                {% endfor %}
-                {% else %}
-                <h2 class="text-muted">Programarile mele</h2>
-                {% endif %}
-
+              <div class="col py-3">
+                <h2 class="text-muted">Pacienti</h2>
+                <p>Adauga sau modifica datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza pacientii</a></p>
               </div>
 
+              <div class="col py-3">
+                <h2 class="text-muted">Fise pacienti</h2>
+                <p>Adauga sau modifica fisa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza fisele</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col py-3">
+                <h2 class="text-muted">Programari</h2>
+                <p>Adauga sau modifica programarile</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza programarile</a></p>
+              </div>
 
+              <div class="col py-3">
+                <h2 class="text-muted">Facturi</h2>
+                <p>Vizuializeaza facturile unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza facturile</a></p>
+              </div>
             </div>
           </div>
         </div>

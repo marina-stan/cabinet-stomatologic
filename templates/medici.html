@@ -28,19 +28,19 @@
 
 
   <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
     }
+  }
   </style>
 
 
@@ -58,18 +58,18 @@
           <div class="navbar-nav ms-auto">
             <!-- <a class="nav-link" href="{% url 'home' %}">Acasă</a>&nbsp;
             <a class="nav-link" href="{% url 'about' %}">Despre noi<a>&nbsp;
-                  <a class="nav-link" href="{% url 'consultatii' %}">Consultații online<a>
-              <a class="nav-link" href="http://twitter.com/Marina19982390">Twitter</a>
-              <a class="nav-link" href="https://www.facebook.com/marina.stan.7982/">Facebook</a>
-              <a class="nav-link" href="{% url 'contact' %}">Contact<a> -->
-                {% if user.is_authenticated %}
-                <a class="nav-link text-end" style='color:#e02d51' href='javascript:{document.getElementById("logout").submit()}'>Logout<a>
-                <form id="logout" method="POST" action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <input type='hidden' />
-                </form>
-                {% else %}
-                <a class="nav-link active text-end" style='color:#1dcff2' href='{% url 'contul-meu' %}'>Contul meu<a>
+            <a class="nav-link" href="{% url 'consultatii' %}">Consultații online<a>
+            <a class="nav-link" href="http://twitter.com/Marina19982390">Twitter</a>
+            <a class="nav-link" href="https://www.facebook.com/marina.stan.7982/">Facebook</a>
+            <a class="nav-link" href="{% url 'contact' %}">Contact<a> -->
+            {% if user.is_authenticated %}
+            <a class="nav-link text-end" style='color:#e02d51' href='javascript:{document.getElementById("logout").submit()}'>Ieși din cont<a>
+              <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type='hidden' />
+              </form>
+              {% else %}
+              <a class="nav-link active text-end" style='color:#1dcff2' href='{% url 'contul-meu' %}'>Contul meu<a>
                 {% endif %}
               </div>
             </div>
@@ -82,7 +82,7 @@
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 style='color:#524652'>Bun venit în contul medicului!</h1>
+                <h1 style='color:#524652'>Bun venit în contul tau {{ user.get_short_name }}!</h1>
               </div>
             </div>
           </section>
@@ -90,15 +90,59 @@
         <div class="album py-3 bg-light">
           <div class="container">
             <div class="row">
-                 <div class="col">
-          aaaa
-            </div>
+              <div class="col py-3">
+                <h2 class="text-muted">Pacienti</h2>
+                <p>Adauga sau modifica datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza pacientii</a></p>
+              </div>
 
-<div class="col">
-        bbbb
-        </div>
-        </div>
+              <div class="col py-3">
+                <h2 class="text-muted">Fise pacienti</h2>
+                <p>Adauga sau modifica fisa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza fisele</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col py-3">
+                <h2 class="text-muted">Diagnostice</h2>
+                <p>Adauga sau modifica datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza pacientii</a></p>
+              </div>
+
+              <div class="col py-3">
+                <h2 class="text-muted">Tratamente</h2>
+                <p>Adauga sau modifica fisa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza fisele</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col py-3">
+                <h2 class="text-muted">Medici</h2>
+                <p>Adauga sau modifica datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza pacientii</a></p>
+              </div>
+
+              <div class="col py-3">
+                <h2 class="text-muted">Asistenti</h2>
+                <p>Adauga sau modifica fisa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza fisele</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col py-3">
+                <h2 class="text-muted">Produse</h2>
+                <p>Adauga sau modifica datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza pacientii</a></p>
+              </div>
+
+              <div class="col py-3">
+                <h2 class="text-muted">Facturi</h2>
+                <p>Adauga sau modifica fisa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza fisele</a></p>
+              </div>
+            </div>
           </div>
+
         </div>
 
       </main>
