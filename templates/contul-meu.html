@@ -82,7 +82,14 @@
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
+
+                {% for pacient in pacienti.all %}
+                {% if user.email == pacient.email %}
+                {% if pacient.is_male %}
                 <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
+                {%else%}
+                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#b734eb'>{{ user.get_short_name }}</span>!</h1>
+                {% endif %}  {% endif %}{% endfor %}
               </div>
             </div>
           </section>
@@ -93,21 +100,21 @@
             <div class="row">
               <div class="col">
                 <h4 class="text-muted">Date personale :</h4>
-<br/>
-
-              {% for pacient in pacienti.all %}
-              <p><span style='font-weight:bold'>Nume:</span> {{ pacient.nume_de_familie }}</p>
-              <p><span style='font-weight:bold'>Prenume:</span> {{ pacient.prenume }}</p>
-              <p><span style='font-weight:bold'>CNP:</span> {{ pacient.cnp }}</p>
-              <p><span style='font-weight:bold'>Email:</span> {% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</p>
-              <p><span style='font-weight:bold'>Telefon:</span> {% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</p>
-             {% endfor %}
+                <br/>
+                {% for pacient in pacienti.all %}
+                {% if user.email == pacient.email %}
+                <p><span style='font-weight:bold'>Nume:</span> {{ pacient.nume_de_familie }}</p>
+                <p><span style='font-weight:bold'>Prenume:</span> {{ pacient.prenume }}</p>
+                <p><span style='font-weight:bold'>CNP:</span> {{ pacient.cnp }}</p>
+                <p><span style='font-weight:bold'>Email:</span> {% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</p>
+                <p><span style='font-weight:bold'>Telefon:</span> {% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</p>
+                {% endif %}{% endfor %}
 
               </div>
 
               <div class="col">
-    <h4 class="text-muted">Programarile mele:</h4>
-  
+                <h4 class="text-muted">Programarile mele:</h4>
+
                 <br/>
                 <table class="table">
                   <thead>
@@ -115,12 +122,13 @@
                       <th scope="col">#</th>
                       <th scope="col">Data si ora</th>
                       <th scope="col">Medic</th>
-                              <th scope="col">Status</th>
+                      <th scope="col">Status</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                  {% for programare in programari.all %}
+                    {% for programare in programari.all %}
+                      {% if user.email == programare.pacient.email %}
                     <tr>
 
                       <th scope="row"> {{ forloop.counter }}</th>
@@ -128,36 +136,36 @@
                       <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
                       <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
                     </tr>
-                    {% endfor %}
+                    {% endif %}  {% endfor %}
                   </tbody>
                 </table>
 
 
-</div>
               </div>
-
-
             </div>
+
+
           </div>
         </div>
+      </div>
 
-      </main>
+    </main>
 
-      <footer class="text-muted py-5">
-        <div class="container text-center">
-          <p class="float-end mb-1">
-            <a href=#>Politică cookies</a>&nbsp;
-            <a href=#>Politică date personale</a>&nbsp;
-            <a href=#>Termeni și condiții</a>
-          </p>
-        </div>
-        <div class="container text-left">
-          <p><span>&copy;</span>{% now 'Y' %} Copyright Marina Ghionea</p>
-        </div>
-      </footer>
+    <footer class="text-muted py-5">
+      <div class="container text-center">
+        <p class="float-end mb-1">
+          <a href=#>Politică cookies</a>&nbsp;
+          <a href=#>Politică date personale</a>&nbsp;
+          <a href=#>Termeni și condiții</a>
+        </p>
+      </div>
+      <div class="container text-left">
+        <p><span>&copy;</span>{% now 'Y' %} Copyright Marina Ghionea</p>
+      </div>
+    </footer>
 
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
 
-    </body>
-    </html>
+  </body>
+  </html>

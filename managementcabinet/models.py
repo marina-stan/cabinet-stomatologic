@@ -21,6 +21,10 @@ class Person(models.Model):
        abstract = True
        ordering = ['nume_de_familie']
 
+   def is_male(self):
+       if self.cnp.startswith("1"):
+           return True
+
 class Medic(Person):
     universitate = models.CharField(max_length=255, default='', blank=True, null=True)
     specializare = models.CharField(max_length=255, default='')
