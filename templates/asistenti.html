@@ -28,19 +28,19 @@
 
 
   <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
     }
+  }
   </style>
 
 
@@ -82,7 +82,7 @@
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 style='color:#524652'>Bun venit în contul tau {{ user.get_short_name }}!</h1>
+                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
               </div>
             </div>
           </section>
@@ -93,48 +93,178 @@
               <div class="col py-3">
                 <h2 class="text-muted">Pacienti</h2>
                 <p>Adauga sau modifica datele unui pacient</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza pacientii</a></p>
+                <p><a class="btn btn-secondary" href="#pacienti" role="button">Acceseaza pacientii</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Fise pacienti</h2>
                 <p>Adauga sau modifica fisa unui pacient</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza fisele</a></p>
+                <p><a class="btn btn-secondary" href="#fise" role="button">Acceseaza fisele</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Programari</h2>
-                <p>Adauga sau modifica programarile</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza programarile</a></p>
+                <p>Adauga sau modifica programari</p>
+                <p><a class="btn btn-secondary" href="#programari" role="button">Acceseaza programarile</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Facturi</h2>
-                <p>Vizuializeaza facturile unui pacient</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Acceseaza facturile</a></p>
+                <p>Vizuializeaza facturile</p>
+                <p><a class="btn btn-secondary" href="#facturi" role="button">Acceseaza facturile</a></p>
               </div>
             </div>
           </div>
+
         </div>
 
-      </main>
 
-      <footer class="text-muted py-5">
-        <div class="container text-center">
-          <p class="float-end mb-1">
-            <a href=#>Politică cookies</a>&nbsp;
-            <a href=#>Politică date personale</a>&nbsp;
-            <a href=#>Termeni și condiții</a>
-          </p>
-        </div>
-        <div class="container text-left">
-          <p><span>&copy;</span>{% now 'Y' %} Copyright Marina Ghionea</p>
-        </div>
-      </footer>
+      </div>
 
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
+    </main>
+    <div class="container">
+      <div class="row py-5" id='pacienti'>
+        <h4>Pacienti:</h4>
+        <br/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nume</th>
+              <th scope="col">Prenume</th>
+              <th scope="col">CNP</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefon</th>
+                      <th scope="col">Status</th>
+            </tr>
+          </thead>
 
-    </body>
-    </html>
+          <tbody>
+            {% for pacient in pacienti.all %}
+            <tr>
+
+              <th scope="row"> {{ forloop.counter }}</th>
+              <td>{{ pacient.nume_de_familie }}</td>
+              <td>{{ pacient.prenume }}</td>
+              <td>{{ pacient.cnp }}</td>
+              <td>{% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</td>
+              <td>{% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</td>
+                    <td>{% if pacient.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+      <div class="row  py-5"  id='fise'>
+        <h4>Fise pacienti:</h4>
+
+        <br/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Fisa</th>
+                  <th scope="col">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for fisa in fise_pacienti.all %}
+            <tr>
+
+              <th scope="row"> {{ forloop.counter }}</th>
+              <td>{{ fisa }}</td>
+                <td>{% if fisa.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+      <div class="row  py-5"  id='programari'>
+        <h4>Programari:</h4>
+
+
+        <br/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Programare</th>
+              <th scope="col">Pacient</th>
+              <th scope="col">Medic</th>
+              <th scope="col">Asistent</th>
+                      <th scope="col">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for programare in programari.all %}
+            <tr>
+
+              <th scope="row"> {{ forloop.counter }}</th>
+              <td>{{ programare.data_si_ora }}</td>
+              <td>{{ programare.pacient.nume_de_familie }} {{ programare.pacient.prenume }}</td>
+              <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
+              <td>{{ programare.asistent.nume_de_familie }} {{ programare.asistent.prenume }}</td>
+                  <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="row  py-5"  id='facturi'>
+        <h4>Facturi:</h4>
+
+        <br/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Numar factura</th>
+              <th scope="col">Serie factura</th>
+                            <th scope="col">Pacient</th>
+                      <th scope="col">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for factura in facturi.all %}
+            <tr>
+
+              <th scope="row"> {{ forloop.counter }}</th>
+              <td>{{ factura.numar_factura }}</td>
+              <td>{{ factura.serie_factura }}</td>
+                <td>{{ factura.pacient.nume_de_familie }} {{ factura.pacient.prenume }}</td>
+                                <td>{% if factura.status %}EMISA{% else %}ANULATA{% endif %}</td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <footer class="text-muted py-5">
+      <div class="container text-center">
+        <p class="float-end mb-1">
+          <a href=#>Politică cookies</a>&nbsp;
+          <a href=#>Politică date personale</a>&nbsp;
+          <a href=#>Termeni și condiții</a>
+        </p>
+      </div>
+      <div class="container text-left">
+        <p><span>&copy;</span>{% now 'Y' %} Copyright Marina Ghionea</p>
+      </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
+
+  </body>
+  </html>

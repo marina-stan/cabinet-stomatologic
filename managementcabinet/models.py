@@ -19,7 +19,7 @@ class Person(models.Model):
 
    class Meta:
        abstract = True
-
+       ordering = ['nume_de_familie']
 
 class Medic(Person):
     universitate = models.CharField(max_length=255, default='', blank=True, null=True)
@@ -42,6 +42,7 @@ class Asistent(Person):
 class Pacient(Person):
     persoana_de_contact = models.CharField(max_length=255, default='', blank=True, null=True)
 
+
     def permisiuni():
         return "pacient"
 
@@ -55,6 +56,9 @@ class Programare(models.Model):
     notes = models.TextField(max_length=1500, default='', blank=True, null=True)
     status = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ['data_si_ora']
+
     def preety_date_time(self):
         return self.data_si_ora.strftime("%Y-%m-%d, %H:%M")
 
@@ -67,6 +71,9 @@ class Diagnostic(models.Model):
    notes = models.TextField(max_length=1500, default='', blank=True, null=True)
    status = models.BooleanField(default=True)
 
+   class Meta:
+       ordering = ['denumire']
+
    def __str__(self):
        return self.denumire
 
@@ -77,6 +84,9 @@ class Partener(models.Model):
     valid_pana_la = models.DateField()
     notes = models.TextField(max_length=1500, default='', blank=True, null=True)
     status = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['denumire']
 
     def __str__(self):
         return self.denumire
@@ -92,6 +102,9 @@ class Produs(models.Model):
     notes = models.TextField(max_length=1500, default='', blank=True, null=True)
     status = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ['denumire']
+
     def __str__(self):
         return self.denumire
 
@@ -101,6 +114,9 @@ class Tratament(models.Model):
    cantitate = models.PositiveSmallIntegerField()
    notes = models.TextField(max_length=1500, default='', blank=True, null=True)
    status = models.BooleanField(default=True)
+
+   class Meta:
+       ordering = ['denumire']
 
    def __str__(self):
        return self.denumire
@@ -118,6 +134,9 @@ class Factura(models.Model):
     notes = models.TextField(max_length=1500, default='', blank=True, null=True)
     status = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ['-data_emitere']
+
     def preety_date(self):
         return self.data_emitere.strftime("%Y-%m-%d")
 
@@ -134,5 +153,6 @@ class FisaPacient(models.Model):
     notes = models.TextField(max_length=1500, default='', blank=True, null=True)
     status = models.BooleanField(default=True)
 
+
     def __str__(self):
-      return self.pacient.nume_de_familie + " " + self.pacient.prenume + " " + self.pacient.cnp
+      return self.pacient.nume_de_familie + " " + self.pacient.prenume + " - " + self.pacient.cnp

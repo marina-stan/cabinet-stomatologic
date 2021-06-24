@@ -1,10 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 import operator
-from managementcabinet.models import Person
-from managementcabinet.models import Medic
-from managementcabinet.models import Asistent
-from managementcabinet.models import Pacient
+from managementcabinet.models import *
 from django.contrib.auth.models import User, Group
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
@@ -16,7 +13,7 @@ def home(request):
 
 def about(request):
     medici = Medic.objects
-    return render(request, 'about.html',  {'medici':medici})
+    return render(request, 'about.html', {'medici':medici})
 
 def contact(request):
     return render(request, 'contact.html')
@@ -25,13 +22,32 @@ def consultatii(request):
     return render(request, 'consultatii-online.html')
 
 def contulMeu(request):
-    return render(request, 'contul-meu.html')
+    pacienti = Pacient.objects
+    programari = Programare.objects
+    context = {'pacienti':pacienti, 'programari':programari}
+    return render(request, 'contul-meu.html', context)
 
 def medici(request):
-    return render(request, 'medici.html')
+    medici = Medic.objects
+    pacienti = Pacient.objects
+    asistenti = Asistent.objects
+    programari = Programare.objects
+    fise_pacienti = FisaPacient.objects
+    facturi = Factura.objects
+    diagnostice = Diagnostic.objects
+    tratamente = Tratament.objects
+    produse = Produs.objects
+    context = {'medici':medici, 'pacienti':pacienti, 'asistenti':asistenti, 'programari':programari, 'fise_pacienti':fise_pacienti,
+               'facturi':facturi, 'diagnostice':diagnostice, 'tratamente':tratamente, 'produse':produse}
+    return render(request, 'medici.html', context)
 
 def asistenti(request):
-    return render(request, 'asistenti.html')
+    pacienti = Pacient.objects
+    programari = Programare.objects
+    fise_pacienti = FisaPacient.objects
+    facturi = Factura.objects
+    context = {'pacienti':pacienti, 'programari':programari, 'fise_pacienti':fise_pacienti, 'facturi':facturi}
+    return render(request, 'asistenti.html', context)
 
 def is_medic(user):
     return user.groups.filter(name='Medici').exists()
