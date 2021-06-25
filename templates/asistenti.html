@@ -81,9 +81,20 @@
         <div class="main" style="background-image: url('{% static 'pexels-scott-webb-1029622.jpg' %}');">
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
-              <div class="col-lg-6 col-md-8 mx-auto">
+              <div class="col-lg-6 col-md-8 mx-auto"> 
+                {% for asistent in asistenti.all %}
+
+                {% if user.email == asistent.email %}
+                {% if asistent.is_male %}
+                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
+                {%else%}
+                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#b734eb'>{{ user.get_short_name }}</span>!</h1>
+                {% endif %}  {% endif %}  {% endfor %}
+
+
                 <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
               </div>
+
             </div>
           </section>
         </div>

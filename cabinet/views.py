@@ -42,11 +42,12 @@ def medici(request):
     return render(request, 'medici.html', context)
 
 def asistenti(request):
+    asistenti = Asistent.objects
     pacienti = Pacient.objects
     programari = Programare.objects
     fise_pacienti = FisaPacient.objects
     facturi = Factura.objects
-    context = {'pacienti':pacienti, 'programari':programari, 'fise_pacienti':fise_pacienti, 'facturi':facturi}
+    context = {'pacienti':pacienti, 'asistenti':asistenti, 'programari':programari, 'fise_pacienti':fise_pacienti, 'facturi':facturi}
     return render(request, 'asistenti.html', context)
 
 def is_medic(user):

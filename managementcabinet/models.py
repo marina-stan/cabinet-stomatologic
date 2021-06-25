@@ -1,4 +1,5 @@
 from django.db import models
+import re
 
 class Person(models.Model):
    imagine = models.ImageField(upload_to='images', blank=True, null=True)
@@ -22,8 +23,11 @@ class Person(models.Model):
        ordering = ['nume_de_familie']
 
    def is_male(self):
-       if self.cnp.startswith("1"):
+       x = re.search("^1", self.cnp)
+       y = re.search("^5", self.cnp)
+       if x or y:
            return True
+
 
 class Medic(Person):
     universitate = models.CharField(max_length=255, default='', blank=True, null=True)
