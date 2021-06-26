@@ -1,11 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import TemplateView, CreateView, DetailView, FormView
 import operator
+import datetime
+from datetime import datetime
 from managementcabinet.models import *
 from django.contrib.auth.models import User, Group
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from cabinet.forms import contactformemail
+from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
 def home(request):
@@ -24,7 +28,12 @@ def consultatii(request):
 def contulMeu(request):
     pacienti = Pacient.objects
     programari = Programare.objects
-    context = {'pacienti':pacienti, 'programari':programari}
+    form = DateForm()
+    
+    context = {'pacienti':pacienti, 'programari':programari, 'form':form}
+    # if form.is_valid():
+    #     prog_date=form.cleaned_data['date_input']
+    #     return HttpResponseRedirect(reverse('contul-meu.html'))
     return render(request, 'contul-meu.html', context)
 
 def medici(request):

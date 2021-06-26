@@ -24,6 +24,7 @@
   <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
   <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
   <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+
   <meta name="theme-color" content="#7952b3">
 
 
@@ -86,7 +87,7 @@
                 {% for pacient in pacienti.all %}
 
                 {% if user.email == pacient.email %}
-                {% if pacient.is_male %}  
+                {% if pacient.is_male %}
                 <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
                 {%else%}
                 <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#b734eb'>{{ user.get_short_name }}</span>!</h1>
@@ -99,7 +100,7 @@
           <div class="container">
 
             <div class="row">
-              <div class="col">
+              <div class="col-3">
                 <h4 class="text-muted">Date personale :</h4>
                 <br/>
                 {% for pacient in pacienti.all %}
@@ -112,9 +113,24 @@
                 {% endif %}{% endfor %}
 
               </div>
+              <div class="col-3">
+                <h4 class="text-muted">Adaugă o programare:</h4>
+                <div class="py-5">
+                <form  actions='/contul-meu' method = "POST" role="form">
+                          {% csrf_token %}
+                  <div class="form-group">
 
-              <div class="col">
-                <h4 class="text-muted">Programarile mele:</h4>
+
+      <input type="datetime-local">
+      <div class="py-5">
+        <button type="submit" class="btn btn-primary mb-2">Trimite</button>
+                  </div></div>
+          </div>
+         </form>
+
+              </div>
+              <div class="col-6">
+                <h4 class="text-muted">Programările mele:</h4>
 
                 <br/>
                 <table class="table">
@@ -143,10 +159,12 @@
 
 
               </div>
+
             </div>
 
 
           </div>
+
         </div>
       </div>
 
@@ -165,8 +183,9 @@
       </div>
     </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
 
   </body>
+  <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+
   </html>
