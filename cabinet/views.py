@@ -9,6 +9,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from cabinet.forms import contactformemail
+from cabinet.forms import FormModelPacient
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -25,11 +26,29 @@ def contact(request):
 def consultatii(request):
     return render(request, 'consultatii-online.html')
 
+
+def adaugapacient(request):
+    form = FormModelPacient(request.POST)
+    if form.is_valid():
+        form.save()
+        nume_de_familie = form.cleaned_data['nume_de_familie']
+        prenume = form.cleaned_data['prenume']
+        cnp = form.cleaned_data['cnp']
+        email = form.cleaned_data['email']
+        numar_de_telefon = form.cleaned_data['numar_de_telefon']
+        adresa = form.cleaned_data['adresa']
+        note = form.cleaned_data['note']
+        persoana_de_contact = form.cleaned_data['persoana_de_contact']
+        status = form.cleaned_data['status']
+        form = FormModelPacient()
+        return HttpResponse('Pacientul a fost adaugat cu succces !')
+    return render(request, 'adaugapacient.html')
+
 def contulMeu(request):
     pacienti = Pacient.objects
     programari = Programare.objects
     form = DateForm()
-    
+
     context = {'pacienti':pacienti, 'programari':programari, 'form':form}
     # if form.is_valid():
     #     prog_date=form.cleaned_data['date_input']

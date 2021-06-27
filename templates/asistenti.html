@@ -81,7 +81,7 @@
         <div class="main" style="background-image: url('{% static 'pexels-scott-webb-1029622.jpg' %}');">
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
-              <div class="col-lg-6 col-md-8 mx-auto"> 
+              <div class="col-lg-6 col-md-8 mx-auto">
                 {% for asistent in asistenti.all %}
 
                 {% if user.email == asistent.email %}
@@ -91,8 +91,6 @@
                 <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#b734eb'>{{ user.get_short_name }}</span>!</h1>
                 {% endif %}  {% endif %}  {% endfor %}
 
-
-                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
               </div>
 
             </div>
@@ -102,10 +100,11 @@
           <div class="container">
             <div class="row">
               <div class="col py-3">
-                <h2 class="text-muted">Pacienti</h2>
-                <p>Adauga sau modifica datele unui pacient</p>
-                <p><a class="btn btn-secondary" href="#pacienti" role="button">Acceseaza pacientii</a></p>
+                <h2 class="text-muted">Programari</h2>
+                <p>Adauga sau modifica programari</p>
+                <p><a class="btn btn-secondary" href="#programari" role="button">Acceseaza programarile</a></p>
               </div>
+
 
               <div class="col py-3">
                 <h2 class="text-muted">Fise pacienti</h2>
@@ -115,9 +114,9 @@
             </div>
             <div class="row">
               <div class="col py-3">
-                <h2 class="text-muted">Programari</h2>
-                <p>Adauga sau modifica programari</p>
-                <p><a class="btn btn-secondary" href="#programari" role="button">Acceseaza programarile</a></p>
+                <h2 class="text-muted">Pacienti</h2>
+                <p>Adauga sau modifica datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#pacienti" role="button">Acceseaza pacientii</a></p>
               </div>
 
               <div class="col py-3">
@@ -136,70 +135,12 @@
 
     </main>
     <div class="container">
-      <div class="row py-5" id='pacienti'>
-        <h4>Pacienti:</h4>
-        <br/>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nume</th>
-              <th scope="col">Prenume</th>
-              <th scope="col">CNP</th>
-              <th scope="col">Email</th>
-              <th scope="col">Telefon</th>
-                      <th scope="col">Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for pacient in pacienti.all %}
-            <tr>
-
-              <th scope="row"> {{ forloop.counter }}</th>
-              <td>{{ pacient.nume_de_familie }}</td>
-              <td>{{ pacient.prenume }}</td>
-              <td>{{ pacient.cnp }}</td>
-              <td>{% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</td>
-              <td>{% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</td>
-                    <td>{% if pacient.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-      </div>
-      <div class="row  py-5"  id='fise'>
-        <h4>Fise pacienti:</h4>
-
-        <br/>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Fisa</th>
-                  <th scope="col">Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for fisa in fise_pacienti.all %}
-            <tr>
-
-              <th scope="row"> {{ forloop.counter }}</th>
-              <td>{{ fisa }}</td>
-                <td>{% if fisa.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-      </div>
       <div class="row  py-5"  id='programari'>
         <h4>Programari:</h4>
 
-
+        <div class="col-lg-12">
+          <a href="#" class="btn btn-info btn-lg">Adaugă programare</a>
+        </div>
         <br/>
         <table class="table">
           <thead>
@@ -210,6 +151,8 @@
               <th scope="col">Medic</th>
               <th scope="col">Asistent</th>
                       <th scope="col">Status</th>
+
+                      <th scope="col">Actiuni</th>
             </tr>
           </thead>
 
@@ -223,12 +166,82 @@
               <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
               <td>{{ programare.asistent.nume_de_familie }} {{ programare.asistent.prenume }}</td>
                   <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
+                                  <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
 
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
+      <div class="row py-5" id='pacienti'>
+        <h4>Pacienti:</h4>
+        <div class="col-lg-12">
+          <a href="/adaugapacient" class="btn btn-info btn-lg">Adaugă pacient</a>
+        </div>
+        <br/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nume</th>
+              <th scope="col">Prenume</th>
+              <th scope="col">CNP</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefon</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Actiuni</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for pacient in pacienti.all %}
+            <tr>
+              <th scope="row"> {{ forloop.counter }}</th>
+              <td>{{ pacient.nume_de_familie }}</td>
+              <td>{{ pacient.prenume }}</td>
+              <td>{{ pacient.cnp }}</td>
+              <td>{% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</td>
+              <td>{% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</td>
+                    <td>{% if pacient.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+                    <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+      <div class="row  py-5"  id='fise'>
+        <h4>Fise pacienti:</h4>
+        <div class="col-lg-12">
+          <a href="#" class="btn btn-info btn-lg">Adaugă fișă</a>
+        </div>
+        <br/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Fisa</th>
+                  <th scope="col">Status</th>
+                              <th scope="col">Actiuni</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for fisa in fise_pacienti.all %}
+            <tr>
+
+              <th scope="row"> {{ forloop.counter }}</th>
+              <td>{{ fisa }}</td>
+                <td>{% if fisa.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+                                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
       <div class="row  py-5"  id='facturi'>
         <h4>Facturi:</h4>
 
@@ -241,6 +254,7 @@
               <th scope="col">Serie factura</th>
                             <th scope="col">Pacient</th>
                       <th scope="col">Status</th>
+
             </tr>
           </thead>
 

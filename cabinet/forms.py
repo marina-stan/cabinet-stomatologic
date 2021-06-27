@@ -4,6 +4,10 @@ from django.core.cache import cache
 from django.contrib.admin import widgets
 from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
 from django.shortcuts import get_object_or_404
+from managementcabinet.models import Person
+from managementcabinet.models import Pacient
+from managementcabinet.models import models
+from django.contrib.auth.models import User
 
 class contactformemail(forms.Form):
 	fromemail=forms.EmailField(required=True)
@@ -27,3 +31,19 @@ class DateForm(forms.Form):
 class ModelDateForm(forms.Form):
 	class Meta:
 		widgets = {'date':DateInput}
+
+
+class FormModelPacient(forms.ModelForm):
+	nume_de_familie = models.CharField()
+	prenume = models.CharField()
+	cnp = models.CharField()
+	email = models.EmailField()
+	numar_de_telefon = models.CharField()
+	adresa = models.TextField()
+	note = models.TextField()
+	persoana_de_contact = models.CharField()
+	status = models.BooleanField()
+
+	class Meta:
+		model = Pacient
+		fields = ('nume_de_familie', 'prenume', 'cnp', 'email', 'numar_de_telefon', 'adresa', 'note', 'persoana_de_contact', 'status')
