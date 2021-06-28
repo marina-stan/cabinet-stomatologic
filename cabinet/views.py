@@ -12,6 +12,8 @@ from cabinet.forms import contactformemail
 from cabinet.forms import FormModelPacient
 from cabinet.forms import FormModelProgramare
 from cabinet.forms import FormModelFisa
+from cabinet.forms import FormModelProdus
+from cabinet.forms import FormModelFactura
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -86,6 +88,49 @@ def adaugafisa(request):
     form = FormModelFisa()
     context = {'pacienti':pacienti,'diagnostice':diagnostice,'tratamente':tratamente, 'facturi':facturi, 'form':form}
     return render(request, 'adaugafisa.html', context)
+
+def adaugaprodus(request):
+    parteneri = Partener.objects
+
+    form = FormModelProdus(request.POST)
+    if form.is_valid():
+        form.save()
+        denumire = form.cleaned_data['denumire']
+        cantitate = form.cleaned_data['cantitate']
+        data_de_expirare = form.cleaned_data['data_de_expirare']
+        unitate_de_masura = form.cleaned_data['unitate_de_masura']
+        distribuitor = form.cleaned_data['distribuitor']
+        pret_unitar = form.cleaned_data['pret_unitar']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelProdus()
+        return HttpResponse('Produsul a fost adaugat cu succces !')
+    form = FormModelProdus()
+    context = {'parteneri':parteneri, 'form':form}
+    return render(request, 'adaugaprodus.html', context)
+
+def adaugafactura(request):
+    pacienti = Pacient.objects
+    produse = Produs.objects
+    tratamente = Tratament.objects
+    form = FormModelFactura(request.POST)
+    if form.is_valid():
+        form.save()
+        numar_factura = form.cleaned_data['numar_factura']
+        serie_factura =  form.cleaned_data['serie_factura']
+        emitent = form.cleaned_data['emitent']
+        pacient = form.cleaned_data['pacient']
+        produs = form.cleaned_data['produs']
+        cantitate = form.cleaned_data['cantitate']
+        tratament = form.cleaned_data['tratament']
+        data_emitere = form.cleaned_data['data_emitere']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelFactura()
+        return HttpResponse('Factura a fost adaugată cu succces !')
+    form = FormModelFactura()
+    context = {'pacienti':pacienti,'produse':produse,'tratamente':tratamente, 'form':form}
+    return render(request, 'adaugafactura.html', context)
 
 def contulMeu(request):
     pacienti = Pacient.objects

@@ -12,7 +12,9 @@ from managementcabinet.models import Programare
 from managementcabinet.models import Diagnostic
 from managementcabinet.models import Tratament
 from managementcabinet.models import Factura
+from managementcabinet.models import Produs
 from managementcabinet.models import FisaPacient
+from managementcabinet.models import Partener
 from managementcabinet.models import models
 from django.contrib.auth.models import User
 
@@ -82,3 +84,35 @@ class FormModelFisa(forms.ModelForm):
 	class Meta:
 		model = FisaPacient
 		fields = ('pacient', 'programare', 'diagnostic', 'tratament', 'factura', 'notes', 'status')
+
+
+
+class FormModelProdus(forms.ModelForm):
+	denumire = models.CharField()
+	cantitate = models.PositiveSmallIntegerField()
+	data_de_expirare = models.DateField()
+	unitate_de_masura = models.CharField()
+	distribuitor = Partener(forms.ModelMultipleChoiceField(queryset=Partener.objects.all()))
+	pret_unitar = models.PositiveSmallIntegerField()
+	notes = models.TextField()
+	status = models.BooleanField()
+
+	class Meta:
+		model = Produs
+		fields = "__all__"
+
+
+class FormModelFactura(forms.ModelForm):
+	numar_factura = models.PositiveSmallIntegerField()
+	serie_factura =  models.CharField()
+	emitent = models.CharField()
+	pacient = Pacient(forms.ModelMultipleChoiceField(queryset=Pacient.objects.all()))
+	produs = Produs(forms.ModelMultipleChoiceField(queryset=Produs.objects.all()))
+	cantitate = models.PositiveSmallIntegerField()
+	tratament = Tratament(forms.ModelMultipleChoiceField(queryset=Tratament.objects.all()))
+	data_emitere = models.DateField()
+	notes = models.TextField()
+	status = models.BooleanField()
+	class Meta:
+		model = Factura
+		fields = "__all__"

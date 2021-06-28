@@ -325,7 +325,9 @@
         </div>
         <div class="row  py-5" id='produse'>
           <h4>Produse:</h4>
-
+          <div class="col-lg-12">
+    <a href="/adaugaprodus" class="btn btn-info btn-lg">Adaugă produs</a>
+    </div>
           <br/>
           <table class="table">
             <thead>
@@ -334,6 +336,7 @@
                 <th scope="col">Denumire</th>
                 <th scope="col">Cantitate</th>
                 <th scope="col">Status</th>
+                  <th scope="col">Acțiuni</th>
               </tr>
             </thead>
 
@@ -345,7 +348,7 @@
                 <td>{{ produs.denumire }}</td>
                 <td>{{ produs.cantitate }}</td>
                 <td>{% if produs.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-
+                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -354,16 +357,19 @@
         </div>
         <div class="row py-5" id='facturi'>
           <h4>Facturi:</h4>
-
+          <div class="col-lg-12">
+    <a href="/adaugafactura" class="btn btn-info btn-lg">Adaugă factură</a>
+    </div>
           <br/>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Numar factura</th>
-                <th scope="col">Serie factura</th>
+                <th scope="col">Număr factură</th>
+                <th scope="col">Serie factură</th>
                 <th scope="col">Pacient</th>
                 <th scope="col">Status</th>
+                          <th scope="col">Acțiuni</th>
               </tr>
             </thead>
 
@@ -376,7 +382,7 @@
                 <td>{{ factura.serie_factura }}</td>
                 <td>{{ factura.pacient.nume_de_familie }} {{ factura.pacient.prenume }}</td>
                 <td>{% if factura.status %}EMISA{% else %}ANULATA{% endif %}</td>
-
+                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
               </tr>
               {% endfor %}
             </tbody>
