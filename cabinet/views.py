@@ -10,6 +10,7 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from cabinet.forms import contactformemail
 from cabinet.forms import FormModelPacient
+from cabinet.forms import FormModelProgramare
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -43,6 +44,26 @@ def adaugapacient(request):
         form = FormModelPacient()
         return HttpResponse('Pacientul a fost adaugat cu succces !')
     return render(request, 'adaugapacient.html')
+
+def adaugaprogramare(request):
+    pacienti = Pacient.objects
+    medici = Medic.objects
+    asistenti = Asistent.objects
+    form = FormModelProgramare(request.POST)
+    if form.is_valid():
+        form.save()
+        pacient = form.cleaned_data['pacient']
+        medic = form.cleaned_data['medic']
+        asistent = form.cleaned_data['asistent']
+        data_si_ora = form.cleaned_data['data_si_ora']
+        durata_in_minute = form.cleaned_data['durata_in_minute']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelProgramare()
+        return HttpResponse('Programarea a fost adaugată cu succces !')
+    form = FormModelProgramare()
+    context = {'pacienti':pacienti,'medici':medici,'asistenti':asistenti, 'form':form}
+    return render(request, 'adaugaprogramare.html', context)
 
 def contulMeu(request):
     pacienti = Pacient.objects

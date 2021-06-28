@@ -52,67 +52,72 @@
         <section class="py-5 text-center container">
           <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-              <h1 style='color:#524652'>Adaugă un pacient</h1>
+              <h1 style='color:#524652'>Adaugă o programare</h1>
             </div>
           </div>
         </section>
       </div>
       <div class="main"  style='background-color: #97d6df;'>
-<form action="/adaugapacient/" method="post">
+
+<form action="/adaugaprogramare/" method="POST">
            {% csrf_token %}
+
  <div class="container">
    <div class="col">
-
+{{form.as_p}}
    </div>
-      <div class="col">
+      <!-- <div class="col">
         <div class="row  py-3">
 
         </div>
-   <div class="row  py-1">
+
+   <div class="form-group  py-1">
 
 
-    <label for="last_name">Nume:</label>
-    <input type="text" id="last_name" name="nume_de_familie">
+    <label for="pacient">Pacient:</label>
+    {% for pacient in pacienti.all %}
+        <select class="form-control" type="text" name="pacient" id="pacient">
+            <option>{{ pacient.nume_de_familie }} {{ pacient.prenume }}  {{ pacient.cnp }}</option>
+</select>
+{% endfor %}
+      </div>
+      <div class="row  py-1">
+
+
+    <label for="medic">Medic:</label>
+      {% for medic in medici.all %}
+      <select class="form-control" type="text" name="medic" id="medic">
+          <option>{{ medic.nume_de_familie }} {{ medic.prenume }}</option>
+  </select>
+  {% endfor %}
 
 
       </div>
       <div class="row  py-1">
 
 
-    <label for="name">Prenume:</label>
-    <input type="text" id="name" name="prenume">
-
-
-      </div>
-      <div class="row  py-1">
-
-
-    <label for="cnp">CNP:</label>
-    <input type="text" id="cnp" name="cnp">
+    <label for="asistent">Asistent:</label>
+      {% for asistent in asistenti.all %}
+      <select class="form-control" type="text" name="asistent" id="asistent">
+          <option>{{ asistent.nume_de_familie }} {{ asistent.prenume }}</option>
+  </select>
+  {% endfor %}
 
 
       </div>
   <div class="row  py-1">
 
 
-    <label for="mail">E-mail:</label>
-    <input type="email" id="mail" name="email">
-
+    <label for="datetime">Data și ora:</label>
+  <input type="datetime-local" name="datetime" id='datetime'>
 
       </div>
   <div class="row  py-1">
 
 
-    <label for="tel">Telefon:</label>
+    <label for="tel">Durata în minute:</label>
     <input type="text" id="tel" name="numar_de_telefon">
 
-
-      </div>
-  <div class="row  py-1">
-
-
-    <label for="adress">Adresa:</label>
-    <textarea id="adress" name="adresa"></textarea>
 
       </div>
 
@@ -145,7 +150,7 @@
  <div class="col">
 
  </div>
-    </div>
+    </div> -->
  <div class="container">
  <div class="row  py-2">
  <div class="col text-center">
