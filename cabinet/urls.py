@@ -33,5 +33,6 @@ urlpatterns = [
     path('contul-meu/', views.contulMeu, name = 'contul-meu'),
     path('adaugapacient/', views.adaugapacient, name = 'adaugapacient'),
     path('adaugaprogramare/', views.adaugaprogramare, name = 'adaugaprogramare'),
+    path('adaugafisa/', views.adaugafisa, name = 'adaugafisa'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

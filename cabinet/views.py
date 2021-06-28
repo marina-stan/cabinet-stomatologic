@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login
 from cabinet.forms import contactformemail
 from cabinet.forms import FormModelPacient
 from cabinet.forms import FormModelProgramare
+from cabinet.forms import FormModelFisa
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -64,6 +65,27 @@ def adaugaprogramare(request):
     form = FormModelProgramare()
     context = {'pacienti':pacienti,'medici':medici,'asistenti':asistenti, 'form':form}
     return render(request, 'adaugaprogramare.html', context)
+
+def adaugafisa(request):
+    pacienti = Pacient.objects
+    diagnostice = Diagnostic.objects
+    tratamente = Tratament.objects
+    facturi = Factura.objects
+    form = FormModelFisa(request.POST)
+    if form.is_valid():
+        form.save()
+        pacient = form.cleaned_data['pacient']
+        programare = form.cleaned_data['programare']
+        diagnostic = form.cleaned_data['diagnostic']
+        tratament = form.cleaned_data['tratament']
+        factura = form.cleaned_data['factura']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelFisa()
+        return HttpResponse('Fisa pacientului a fost adaugată cu succces !')
+    form = FormModelFisa()
+    context = {'pacienti':pacienti,'diagnostice':diagnostice,'tratamente':tratamente, 'facturi':facturi, 'form':form}
+    return render(request, 'adaugafisa.html', context)
 
 def contulMeu(request):
     pacienti = Pacient.objects

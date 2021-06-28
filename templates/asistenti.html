@@ -86,9 +86,9 @@
 
                 {% if user.email == asistent.email %}
                 {% if asistent.is_male %}
-                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
+                <h1 style='color:#524652'>Bun venit în contul tău <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
                 {%else%}
-                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#db214f'>{{ user.get_short_name }}</span>!</h1>
+                <h1 style='color:#524652'>Bun venit în contul tău <span style='color:#db214f'>{{ user.get_short_name }}</span>!</h1>
                 {% endif %}  {% endif %}  {% endfor %}
 
               </div>
@@ -100,29 +100,29 @@
           <div class="container">
             <div class="row">
               <div class="col py-3">
-                <h2 class="text-muted">Programari</h2>
-                <p>Adauga sau modifica programari</p>
-                <p><a class="btn btn-secondary" href="#programari" role="button">Acceseaza programarile</a></p>
+                <h2 class="text-muted">Programări</h2>
+                <p>Adaugă sau modifică programări</p>
+                <p><a class="btn btn-secondary" href="#programari" role="button">Accesează programările</a></p>
               </div>
 
 
               <div class="col py-3">
-                <h2 class="text-muted">Fise pacienti</h2>
-                <p>Adauga sau modifica fisa unui pacient</p>
-                <p><a class="btn btn-secondary" href="#fise" role="button">Acceseaza fisele</a></p>
+                <h2 class="text-muted">Fișe pacienți</h2>
+                <p>Adaugă sau modifică fișa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#fise" role="button">Accesează fișele</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
-                <h2 class="text-muted">Pacienti</h2>
-                <p>Adauga sau modifica datele unui pacient</p>
-                <p><a class="btn btn-secondary" href="#pacienti" role="button">Acceseaza pacientii</a></p>
+                <h2 class="text-muted">Pacienți</h2>
+                <p>Adaugă sau modifică datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#pacienti" role="button">Accesează pacienții</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Facturi</h2>
-                <p>Vizuializeaza facturile</p>
-                <p><a class="btn btn-secondary" href="#facturi" role="button">Acceseaza facturile</a></p>
+                <p>Vizuializează facturile</p>
+                <p><a class="btn btn-secondary" href="#facturi" role="button">Accesează facturile</a></p>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@
     </main>
     <div class="container">
       <div class="row  py-5"  id='programari'>
-        <h4>Programari:</h4>
+        <h4>Programări:</h4>
 
         <div class="col-lg-12">
           <a href="/adaugaprogramare" class="btn btn-info btn-lg">Adaugă programare</a>
@@ -152,7 +152,7 @@
               <th scope="col">Asistent</th>
                       <th scope="col">Status</th>
 
-                      <th scope="col">Actiuni</th>
+                      <th scope="col">Acțiuni</th>
             </tr>
           </thead>
 
@@ -174,7 +174,7 @@
         </table>
       </div>
       <div class="row py-5" id='pacienti'>
-        <h4>Pacienti:</h4>
+        <h4>Pacienți:</h4>
         <div class="col-lg-12">
           <a href="/adaugapacient" class="btn btn-info btn-lg">Adaugă pacient</a>
         </div>
@@ -189,7 +189,7 @@
               <th scope="col">Email</th>
               <th scope="col">Telefon</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Actiuni</th>
+                      <th scope="col">Acțiuni</th>
             </tr>
           </thead>
 
@@ -211,18 +211,18 @@
 
       </div>
       <div class="row  py-5"  id='fise'>
-        <h4>Fise pacienti:</h4>
+        <h4>Fișe pacienți:</h4>
         <div class="col-lg-12">
-          <a href="#" class="btn btn-info btn-lg">Adaugă fișă</a>
+          <a href="/adaugafisa" class="btn btn-info btn-lg">Adaugă fișă</a>
         </div>
         <br/>
         <table class="table">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Fisa</th>
+              <th scope="col">Fișa</th>
                   <th scope="col">Status</th>
-                              <th scope="col">Actiuni</th>
+                              <th scope="col">Acțiuni</th>
             </tr>
           </thead>
 
@@ -250,8 +250,8 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Numar factura</th>
-              <th scope="col">Serie factura</th>
+              <th scope="col">Număr factură</th>
+              <th scope="col">Serie factură</th>
                             <th scope="col">Pacient</th>
                       <th scope="col">Status</th>
 

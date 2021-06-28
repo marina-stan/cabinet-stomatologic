@@ -87,9 +87,9 @@
 
                 {% if user.email == medic.email %}
                 {% if medic.is_male %}
-                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
+                <h1 style='color:#524652'>Bun venit în contul tău <span style='color:#03b1fc'>{{ user.get_short_name }}</span>!</h1>
                 {%else%}
-                <h1 style='color:#524652'>Bun venit în contul tau <span style='color:#db214f'>{{ user.get_short_name }}</span>!</h1>
+                <h1 style='color:#524652'>Bun venit în contul tău <span style='color:#db214f'>{{ user.get_short_name }}</span>!</h1>
                 {% endif %}  {% endif %}  {% endfor %}
               </div>
             </div>
@@ -99,61 +99,61 @@
           <div class="container">
             <div class="row">
               <div class="col py-3">
-                <h2 class="text-muted">Pacienti</h2>
-                <p>Adauga sau modifica datele unui pacient</p>
-                <p><a class="btn btn-secondary" href="#pacienti" role="button">Acceseaza pacientii</a></p>
+                <h2 class="text-muted">Pacienți</h2>
+                <p>Adaugă sau modifică datele unui pacient</p>
+                <p><a class="btn btn-secondary" href="#pacienti" role="button">Accesează pacienții</a></p>
               </div>
 
               <div class="col py-3">
-                <h2 class="text-muted">Fise pacienti</h2>
-                <p>Adauga sau modifica fisa unui pacient</p>
-                <p><a class="btn btn-secondary" href="#fise" role="button">Acceseaza fisele</a></p>
+                <h2 class="text-muted">Fișe pacienți</h2>
+                <p>Adaugă sau modifică fișa unui pacient</p>
+                <p><a class="btn btn-secondary" href="#fise" role="button">Accesează fișele</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Diagnostice</h2>
-                <p>Adauga sau modifica datele unui pacient</p>
-                <p><a class="btn btn-secondary" href="#diagnostice" role="button">Acceseaza pacientii</a></p>
+                <p>Adaugă sau modifică un diagnostic</p>
+                <p><a class="btn btn-secondary" href="#diagnostice" role="button">Accesează diagnosticele</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Tratamente</h2>
-                <p>Adauga sau modifica un tratament</p>
-                <p><a class="btn btn-secondary" href="#tratamente" role="button">Acceseaza tratamentele</a></p>
+                <p>Adaugă sau modifică un tratament</p>
+                <p><a class="btn btn-secondary" href="#tratamente" role="button">Accesează tratamentele</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Medici</h2>
-                <p>Adauga sau modifica datele unui medic</p>
-                <p><a class="btn btn-secondary" href="#medici" role="button">Acceseaza medicii</a></p>
+                <p>Vizualizează medicii</p>
+                <p><a class="btn btn-secondary" href="#medici" role="button">Accesează medicii</a></p>
               </div>
 
               <div class="col py-3">
-                <h2 class="text-muted">Asistenti</h2>
-                <p>Adauga sau modifica fisa unui pacient</p>
-                <p><a class="btn btn-secondary" href="#asistenti" role="button">Acceseaza fisele</a></p>
+                <h2 class="text-muted">Asistenți</h2>
+                <p>Vizualizează asistenții</p>
+                <p><a class="btn btn-secondary" href="#asistenti" role="button">Accesează fișele</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Produse</h2>
-                <p>Adauga sau modifica datele unui pacient</p>
-                <p><a class="btn btn-secondary" href="#produse" role="button">Acceseaza pacientii</a></p>
+                <p>Adaugă sau modifică un produs</p>
+                <p><a class="btn btn-secondary" href="#produse" role="button">Accesează pacienții</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Facturi</h2>
-                <p>Adauga sau modifica o factura</p>
-                <p><a class="btn btn-secondary" href="#facturi" role="button">Acceseaza facturile</a></p>
+                <p>Adaugă sau modifică o factură</p>
+                <p><a class="btn btn-secondary" href="#facturi" role="button">Accesează facturile</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
-                <h2 class="text-muted">Programari</h2>
-                <p>Adauga sau modifica datele unuei programari</p>
-                <p><a class="btn btn-secondary" href="#programari" role="button">Acceseaza programarile</a></p>
+                <h2 class="text-muted">Programări</h2>
+                <p>Adaugă sau modifică datele unei programări</p>
+                <p><a class="btn btn-secondary" href="#programari" role="button">Accesează programările</a></p>
               </div>
 
               <div class="col py-3">
@@ -167,6 +167,9 @@
       <div class="container">
         <div class="row  py-5" id='pacienti'>
           <h4>Pacienti:</h4>
+          <div class="col-lg-12">
+            <a href="/adaugapacient" class="btn btn-info btn-lg">Adaugă pacient</a>
+          </div>
           <br/>
           <table class="table">
             <thead>
@@ -178,6 +181,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Telefon</th>
                 <th scope="col">Status</th>
+                  <th scope="col">Acțiuni</th>
               </tr>
             </thead>
 
@@ -192,6 +196,7 @@
                 <td>{% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</td>
                 <td>{% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</td>
                 <td>{% if pacient.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+                  <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -200,7 +205,9 @@
         </div>
         <div class="row  py-5" id='fise'>
           <h4>Fise pacienti:</h4>
-
+              <div class="col-lg-12">
+  <a href="/adaugafisa" class="btn btn-info btn-lg">Adaugă fișă</a>
+</div>
           <br/>
           <table class="table">
             <thead>
@@ -208,6 +215,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Fisa</th>
                 <th scope="col">Status</th>
+                    <th scope="col">Acțiuni</th>
               </tr>
             </thead>
 
@@ -218,6 +226,7 @@
                 <th scope="row"> {{ forloop.counter }}</th>
                 <td>{{ fisa }}</td>
                 <td>{% if fisa.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+                        <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
 
               </tr>
               {% endfor %}
@@ -227,8 +236,9 @@
         </div>
         <div class="row  py-5" id='programari'>
           <h4>Programari:</h4>
-
-
+              <div class="col-lg-12">
+<a href="/adaugaprogramare" class="btn btn-info btn-lg">Adaugă programare</a>
+</div>
           <br/>
           <table class="table">
             <thead>
@@ -239,6 +249,7 @@
                 <th scope="col">Medic</th>
                 <th scope="col">Asistent</th>
                 <th scope="col">Status</th>
+                    <th scope="col">Acțiuni</th>
               </tr>
             </thead>
 
@@ -252,7 +263,7 @@
                 <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
                 <td>{{ programare.asistent.nume_de_familie }} {{ programare.asistent.prenume }}</td>
                 <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
-
+                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
               </tr>
               {% endfor %}
             </tbody>
