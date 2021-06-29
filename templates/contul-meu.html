@@ -113,7 +113,7 @@
                 {% endif %}{% endfor %}
 
               </div>
-              <div class="col-3">
+              <div class="col-3 py-5">
                 <h4 class="text-muted">Adaugă o programare:</h4>
                 <div class="py-5">
                 <form  actions='/contul-meu' method = "POST" role="form">
@@ -121,9 +121,9 @@
                   <div class="form-group">
 
 
-      <input type="datetime-local" name="datetime">
-      <div class="py-5">
-        <button type="submit" class="btn btn-primary mb-2">Verifică disponibilitate</button>
+      <!-- <input type="datetime-local" name="datetime"> -->
+      <div class="py-1">
+        <a href='/adaugaprogramarepacient' class="btn btn-primary mb-2">Verifică disponibilitate<a>
                   </div></div>
           </div>
          </form>
@@ -151,7 +151,7 @@
                       <th scope="row"> {{ forloop.counter }}</th>
                       <td>{{ programare.data_si_ora }}</td>
                       <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
-                      <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
+                      <td>{% if programare.status %}CONFIRMATA{% else %}NECONFIRMATA{% endif %}</td>
                     </tr>
                     {% endif %}  {% endfor %}
                   </tbody>

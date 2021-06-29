@@ -16,6 +16,7 @@ from cabinet.forms import FormModelProdus
 from cabinet.forms import FormModelFactura
 from cabinet.forms import FormModelDiagnostic
 from cabinet.forms import FormModelTratament
+from cabinet.forms import FormModelProgramarePacient
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -69,6 +70,27 @@ def adaugaprogramare(request):
     form = FormModelProgramare()
     context = {'pacienti':pacienti,'medici':medici,'asistenti':asistenti, 'form':form}
     return render(request, 'adaugaprogramare.html', context)
+
+
+def adaugaprogramarepacient(request):
+    pacienti = Pacient.objects
+    medici = Medic.objects
+    asistenti = Asistent.objects
+    form = FormModelProgramarePacient(request.POST)
+    if form.is_valid():
+        form.save()
+        pacient = form.cleaned_data['pacient']
+        medic = form.cleaned_data['medic']
+        asistent = form.cleaned_data['asistent']
+        data_si_ora = form.cleaned_data['data_si_ora']
+        durata_in_minute = form.cleaned_data['durata_in_minute']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelProgramarePacient()
+        return HttpResponse('Programarea a fost adaugată cu succces așteaptă confirmarea acesteia!')
+    form = FormModelProgramarePacient()
+    context = {'pacienti':pacienti,'medici':medici,'asistenti':asistenti, 'form':form}
+    return render(request, 'adaugaprogramarepacient.html', context)
 
 def adaugafisa(request):
     pacienti = Pacient.objects
@@ -251,3 +273,8 @@ def contactsendemail(request):
                 return HttpResponse('Mesajul FARA atasament a fost trimis cu succces !')
 
     return render(request, 'consultatii-online.html', {'form':form})
+
+def alege_medic(val, medic):
+    if val == "Implantologie":
+        if medic.specializare == 'Implantologie':
+            return medic

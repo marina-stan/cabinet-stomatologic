@@ -138,3 +138,16 @@ class FormModelTratament(forms.ModelForm):
 	class Meta:
 		model = Tratament
 		fields = "__all__"
+
+class FormModelProgramarePacient(forms.ModelForm):
+	pacient = Pacient(forms.ModelMultipleChoiceField(queryset=Pacient.objects.all()))
+	medic = Medic(forms.ModelMultipleChoiceField(queryset=Medic.objects.all()))
+	asistent = Asistent(forms.ModelMultipleChoiceField(queryset=Asistent.objects.all()))
+	data_si_ora = models.DateTimeField()
+	durata_in_minute = models.PositiveSmallIntegerField()
+	notes = models.TextField()
+	status = models.BooleanField()
+
+	class Meta:
+		model = Programare
+		fields = ('pacient', 'medic', 'asistent', 'data_si_ora', 'durata_in_minute', 'notes', 'status')

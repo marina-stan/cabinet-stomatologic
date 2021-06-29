@@ -67,7 +67,7 @@ class Programare(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ['data_si_ora']
+        ordering = ['-data_si_ora']
 
     def preety_date_time(self):
         return self.data_si_ora.strftime("%Y-%m-%d, %H:%M")
