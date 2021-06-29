@@ -14,6 +14,8 @@ from cabinet.forms import FormModelProgramare
 from cabinet.forms import FormModelFisa
 from cabinet.forms import FormModelProdus
 from cabinet.forms import FormModelFactura
+from cabinet.forms import FormModelDiagnostic
+from cabinet.forms import FormModelTratament
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -131,6 +133,34 @@ def adaugafactura(request):
     form = FormModelFactura()
     context = {'pacienti':pacienti,'produse':produse,'tratamente':tratamente, 'form':form}
     return render(request, 'adaugafactura.html', context)
+
+def adaugadiagnostic(request):
+    form = FormModelDiagnostic(request.POST)
+    if form.is_valid():
+        form.save()
+        denumire = form.cleaned_data['denumire']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelDiagnostic()
+        return HttpResponse('Diagnosticul a fost adaugat cu succces !')
+    form = FormModelDiagnostic()
+    context = {'form':form}
+    return render(request, 'adaugadiagnostic.html', context)
+
+def adaugatratament(request):
+    form = FormModelTratament(request.POST)
+    if form.is_valid():
+        form.save()
+        denumire = form.cleaned_data['denumire']
+        produs = form.cleaned_data['produs']
+        cantitate = form.cleaned_data['cantitate']
+        notes = form.cleaned_data['notes']
+        status = form.cleaned_data['status']
+        form = FormModelTratament()
+        return HttpResponse('Tratamentul a fost adaugat cu succces !')
+    form = FormModelTratament()
+    context = {'form':form}
+    return render(request, 'adaugatratament.html', context)
 
 def contulMeu(request):
     pacienti = Pacient.objects

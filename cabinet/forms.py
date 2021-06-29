@@ -116,3 +116,25 @@ class FormModelFactura(forms.ModelForm):
 	class Meta:
 		model = Factura
 		fields = "__all__"
+
+
+class FormModelDiagnostic(forms.ModelForm):
+	denumire = models.CharField()
+	notes = models.TextField()
+	status = models.BooleanField()
+
+	class Meta:
+		model = Diagnostic
+		fields = "__all__"
+
+
+class FormModelTratament(forms.ModelForm):
+	denumire = models.CharField()
+	produs = Produs(forms.ModelMultipleChoiceField(queryset=Produs.objects.all()))
+	cantitate = models.PositiveSmallIntegerField()
+	notes = models.TextField()
+	status = models.BooleanField()
+
+	class Meta:
+		model = Tratament
+		fields = "__all__"

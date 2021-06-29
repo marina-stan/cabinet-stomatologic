@@ -36,5 +36,7 @@ urlpatterns = [
     path('adaugafisa/', views.adaugafisa, name = 'adaugafisa'),
     path('adaugaprodus/', views.adaugaprodus, name = 'adaugaprodus'),
     path('adaugafactura/', views.adaugafactura, name = 'adaugafactura'),
+    path('adaugadiagnostic/', views.adaugadiagnostic, name = 'adaugadiagnostic'),
+    path('adaugatratament/', views.adaugatratament, name = 'adaugatratament'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
