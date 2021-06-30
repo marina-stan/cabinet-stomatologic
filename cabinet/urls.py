@@ -20,6 +20,7 @@ from django.urls import path
 from . import views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name = 'home'),
@@ -39,5 +40,10 @@ urlpatterns = [
     path('adaugadiagnostic/', views.adaugadiagnostic, name = 'adaugadiagnostic'),
     path('adaugatratament/', views.adaugatratament, name = 'adaugatratament'),
     path('adaugaprogramarepacient/', views.adaugaprogramarepacient, name = 'adaugaprogramarepacient'),
+    path('pdf1/', views.render_pdf_view, name = 'pdf1'),
+    path('facturi/', views.FacturaListView.as_view(), name = 'facturi-list-view'),
+    path('pdf/<pk>/', views.factura_render_pdf_view, name = 'facturi-pdf-view'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -153,6 +153,10 @@ class Factura(models.Model):
     def __str__(self):
         return self.preety_date()  + " " + self.pacient.nume_de_familie + " " + self.pacient.prenume
 
+    def total_plata(self):
+        print(self.produs.pret_unitar * self.cantitate)
+        return str(self.produs.pret_unitar * self.cantitate)
+
 
 class FisaPacient(models.Model):
     pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)

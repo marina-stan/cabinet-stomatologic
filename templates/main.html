@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Facturi
+{% endblock title %}
+
+{% block content %}
+{% for factura in object_list %}
+
+{{factura}}
+
+<a href="{% url 'facturi-pdf-view' factura.pk %}"><button class="btn btn-primary">PDF</button>
+
+  <br>
+  <hr>
+  {% endfor %}
+{% endblock content %}

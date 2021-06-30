@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, CreateView, DetailView, FormView
 import operator
 import datetime
@@ -19,6 +19,11 @@ from cabinet.forms import FormModelTratament
 from cabinet.forms import FormModelProgramarePacient
 from cabinet.forms import DateForm
 from django.core.mail import EmailMessage, send_mail
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.views.generic.list import ListView
+from managementcabinet.models import Factura
 
 def home(request):
     return render(request, 'home.html')
@@ -227,6 +232,9 @@ def is_asistent(user):
 def is_pacient(user):
     return user.groups.filter(name='Pacienti').exists()
 
+
+
+
 def conectare(request):
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
@@ -274,7 +282,51 @@ def contactsendemail(request):
 
     return render(request, 'consultatii-online.html', {'form':form})
 
-def alege_medic(val, medic):
-    if val == "Implantologie":
-        if medic.specializare == 'Implantologie':
-            return medic
+# def alege_medic(val, medic):
+#     if val == "Implantologie":
+#         if medic.specializare == 'Implantologie':
+#             return medic
+
+class FacturaListView(ListView):
+    model = Factura
+    template_name = 'main.html'
+
+def factura_render_pdf_view(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    factura = get_object_or_404(Factura, pk=pk)
+    context = {'factura':factura}
+    template_path = 'pdf2.html'
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="factura.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('Au aparut erori <pre>' + html + '</pre>')
+    return response
+
+
+def render_pdf_view(request):
+    facturi = Factura.objects
+    context = {'facturi':facturi}
+    template_path = 'pdf1.html'
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="factura.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('Au aparut erori <pre>' + html + '</pre>')
+    return response
