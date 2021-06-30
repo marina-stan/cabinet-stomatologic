@@ -113,31 +113,17 @@
                 {% endif %}{% endfor %}
 
               </div>
-              <div class="col-3 py-5">
-                <h4 class="text-muted">Adaugă o programare:</h4>
-                <div class="py-5">
-                <form  actions='/contul-meu' method = "POST" role="form">
-                          {% csrf_token %}
-                  <div class="form-group">
 
-
-      <!-- <input type="datetime-local" name="datetime"> -->
-      <div class="py-1">
-        <a href='/adaugaprogramarepacient' class="btn btn-primary mb-2">Verifică disponibilitate<a>
-                  </div></div>
-          </div>
-         </form>
-
-              </div>
-              <div class="col-6">
+              <div class="col-6 py-3">
                 <h4 class="text-muted">Programările mele:</h4>
+
 
                 <br/>
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Data si ora</th>
+                      <!-- <th scope="col">#</th> -->
+                      <th scope="col">Data și ora</th>
                       <th scope="col">Medic</th>
                       <th scope="col">Status</th>
                     </tr>
@@ -148,7 +134,7 @@
                       {% if user.email == programare.pacient.email %}
                     <tr>
 
-                      <th scope="row"> {{ forloop.counter }}</th>
+                      <!-- <th scope="row"> {{ forloop.counter }}</th> -->
                       <td>{{ programare.data_si_ora }}</td>
                       <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
                       <td>{% if programare.status %}CONFIRMATA{% else %}NECONFIRMATA{% endif %}</td>
@@ -156,7 +142,17 @@
                     {% endif %}  {% endfor %}
                   </tbody>
                 </table>
+                <form  actions='/contul-meu' method = "POST" role="form">
+                          {% csrf_token %}
 
+
+
+              <!-- <input type="datetime-local" name="datetime"> -->
+              <p class="py-1">
+              <a href='/adaugaprogramarepacient' class="btn btn-primary mb-2">Adaugă o programare<a>
+              </p>
+
+              </form>
 
               </div>
 
