@@ -5,14 +5,31 @@ Facturi
 {% endblock title %}
 
 {% block content %}
+
+<div class="container py-5">
+  <h2 style='text-align:center'>Facturi</h2>
+  <div class="row py-5">
+    <table>
+  <tr>
+    <th>#</th>
+    <th>Pacient</th>
+    <th>CNP</th>
+    <th>Număr factura</th>
+    <th>Data emiterii</th>
+    <th>Status</th>
+    <th>Acțiuni</th>
+  </tr>
 {% for factura in object_list %}
-
-{{factura}}
-
-<a href="{% url 'facturi-pdf-view' factura.pk %}"><button class="btn btn-primary">PDF</button>
-  
-
-  <br>
-  <hr>
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{factura.pacient.nume_de_familie}} {{factura.pacient.prenume}}</td>
+    <td>{{factura.pacient.cnp}}</td>
+    <td>{{ factura.numar_factura }}</td>
+    <td>{{ factura.data_emitere }}</td>
+    <td>{% if factura.status %}EMISA{% else %}ANULATA{% endif %}</td>
+    <td><a href="{% url 'facturi-pdf-view' factura.pk %}"><button class="btn btn-primary">PDF</button></td>
+  </tr>
+  </div>
+</div>
   {% endfor %}
 {% endblock content %}

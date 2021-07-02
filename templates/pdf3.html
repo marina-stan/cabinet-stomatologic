@@ -1,12 +1,51 @@
 
-{{pacient}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fisa pacient</title>
 
+  </head>
+  <body>
+    <header class="clearfix">
 
 {% for fisa in fise_pacienti.all %}
 
 {% if fisa.pacient.cnp == pacient.cnp %}
-{{fisa.programare}}
-{{fisa.diagnostic}}
-{{fisa.tratament}}
-{% endif %}
+{% if forloop.counter == 1 %}
+      <h2 style='text-align:center'>Fisa pacient: {{pacient.nume_de_familie}} {{pacient.prenume}}</h2>
+     {% endif %}{% endif %}{% endfor %}
+
+    </header>
+    <main class='py-3' style='text-align:center'>
+      <table>
+        <thead>
+          <tr>
+            <th>Programare</th>
+            <th>Diagnostic</th>
+            <th>Tratament</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fisa in fise_pacienti.all %}
+
+ {% if fisa.pacient.cnp == pacient.cnp %}
+
+          <tr>
+           <td>{{fisa.programare}}</td>
+           <td>{{fisa.diagnostic}}</td>
+           <td>{{fisa.tratament}}</td>
+          </tr>
+
+        </tbody>
+        {% endif %}
 {% endfor %}
+      </table>
+      <!-- <div id="notices">
+        <div>NOTICE:</div>
+        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+      </div> -->
+    </main>
+
+  </body>
+</html>

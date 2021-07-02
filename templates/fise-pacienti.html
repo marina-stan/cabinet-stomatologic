@@ -1,19 +1,43 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Fisa pacient
+Fise pacienți
 {% endblock title %}
 
 {% block content %}
-{% for fisa in object_list %}
+<div class="container py-5">
+  <h2 style='text-align:center'>Fișe pacienți</h2>
+  <div class="row  py-5">
+    <table>
+  <tr>
+    <th>#</th>
+    <th>Pacient</th>
+    <th>CNP</th>
+    <th>Email</th>
+    <th>Telefon</th>
+    <th>Status</th>
+    <th>Acțiuni</th>
+  </tr>
+    {% for fisa in object_list %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{fisa.nume_de_familie}} {{fisa.prenume}}</td>
+    <td>{{fisa.cnp}}</td>
+    <td>{% if fisa.email %} {{ fisa.email }} {% else %} - {% endif %}</td>
+    <td>{% if fisa.numar_de_telefon %} {{ fisa.numar_de_telefon }} {% else %} - {% endif %}</td>
+    <td>{% if fisa.status %}ACTIV{% else %}INACTIV{% endif %}</td>
+    <td><a href="{% url 'fisa-pacient-view' fisa.pk %}">
+    <button class="btn btn-primary">Vizualizează fișa</button></td>
+  </tr>
+  </div>
+</div>
+<!--{{fisa}}
 
-{{fisa}}
 
-
-<a href="{% url 'fisa-pacient-view' fisa.pk %}">
-<button class="btn btn-primary">Vizualizeaza fisa</button>
+ <a href="{% url 'fisa-pacient-view' fisa.pk %}">
+<button class="btn btn-primary">Vizualizează fișa</button>
 
   <br>
-  <hr>
+  <hr> -->
   {% endfor %}
 {% endblock content %}
