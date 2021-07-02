@@ -1,0 +1,12 @@
+
+{{pacient}}
+
+
+{% for fisa in fise_pacienti.all %}
+
+{% if fisa.pacient.cnp == pacient.cnp %}
+{{fisa.programare}}
+{{fisa.diagnostic}}
+{{fisa.tratament}}
+{% endif %}
+{% endfor %}

@@ -73,7 +73,12 @@ class Programare(models.Model):
         return self.data_si_ora.strftime("%Y-%m-%d, %H:%M")
 
     def __str__(self):
-        return self.preety_date_time()  + " - " + self.pacient.nume_de_familie + " " + self.pacient.prenume
+        tip = ''
+        if str(self.status) == 'True':
+            tip+= 'CONFIRMATA'
+        if str(self.status) == 'False':
+            tip+= 'NECONFIRMATA'
+        return self.preety_date_time()  + " - " + self.pacient.nume_de_familie + " " + self.pacient.prenume + " - " + tip
 
 
 class Diagnostic(models.Model):
@@ -169,4 +174,7 @@ class FisaPacient(models.Model):
 
 
     def __str__(self):
-      return self.pacient.nume_de_familie + " " + self.pacient.prenume + " - " + self.pacient.cnp
+      return self.pacient.nume_de_familie + " " + self.pacient.prenume + " - " + self.pacient.cnp + "----" + str(self.programare.data_si_ora)
+
+      class Meta:
+          ordering = ['programare']

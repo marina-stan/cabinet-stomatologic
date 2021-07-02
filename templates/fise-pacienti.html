@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Fisa pacient
+{% endblock title %}
+
+{% block content %}
+{% for fisa in object_list %}
+
+{{fisa}}
+
+
+<a href="{% url 'fisa-pacient-view' fisa.pk %}">
+<button class="btn btn-primary">Vizualizeaza fisa</button>
+
+  <br>
+  <hr>
+  {% endfor %}
+{% endblock content %}

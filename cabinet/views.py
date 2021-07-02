@@ -56,6 +56,19 @@ def adaugapacient(request):
         return HttpResponse('Pacientul a fost adaugat cu succces !')
     return render(request, 'adaugapacient.html')
 
+def editeazapacient(request, pk):
+    pacient = get_object_or_404(Pacient, pk=pk)
+    form = FormModelPacient(request.POST)
+    if form.is_valid():
+        pacient = form.save(commit=False)
+        pacient.save()
+        context = {
+            'pacient':pacient,
+            'form':form,
+        }
+        return HttpResponse('Pacientul a fost editat cu succces !')
+    return render(request, 'adaugapacient.html', context)
+
 def adaugaprogramare(request):
     pacienti = Pacient.objects
     medici = Medic.objects
@@ -330,3 +343,52 @@ def render_pdf_view(request):
     if pisa_status.err:
        return HttpResponse('Au aparut erori <pre>' + html + '</pre>')
     return response
+
+
+class FisaPacientListView(ListView):
+    model = Pacient
+    template_name = 'fise-pacienti.html'
+
+def fisaPacientView(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    medici = Medic.objects
+    pacienti = Pacient.objects
+    asistenti = Asistent.objects
+    programari = Programare.objects
+    fise_pacienti = FisaPacient.objects
+    facturi = Factura.objects
+    diagnostice = Diagnostic.objects
+    tratamente = Tratament.objects
+    produse = Produs.objects
+    pacient = get_object_or_404(Pacient, pk=pk)
+    context = {'pacient':pacient, 'medici':medici, 'pacienti':pacienti, 'asistenti':asistenti, 'programari':programari, 'fise_pacienti':fise_pacienti,
+               'facturi':facturi, 'diagnostice':diagnostice, 'tratamente':tratamente, 'produse':produse}
+    template_path = 'pdf3.html'
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="fisa-pacient.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('Au aparut erori <pre>' + html + '</pre>')
+    return response
+
+def fisaConsultatii(request):
+    medici = Medic.objects
+    pacienti = Pacient.objects
+    asistenti = Asistent.objects
+    programari = Programare.objects
+    fise_pacienti = FisaPacient.objects
+    facturi = Factura.objects
+    diagnostice = Diagnostic.objects
+    tratamente = Tratament.objects
+    produse = Produs.objects
+    context = {'medici':medici, 'pacienti':pacienti, 'asistenti':asistenti, 'programari':programari, 'fise_pacienti':fise_pacienti,
+               'facturi':facturi, 'diagnostice':diagnostice, 'tratamente':tratamente, 'produse':produse}
+    return render(request, 'fisa-consultatii.html', context)

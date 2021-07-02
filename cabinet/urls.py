@@ -43,6 +43,10 @@ urlpatterns = [
     path('pdf1/', views.render_pdf_view, name = 'pdf1'),
     path('facturi/', views.FacturaListView.as_view(), name = 'facturi-list-view'),
     path('pdf/<pk>/', views.factura_render_pdf_view, name = 'facturi-pdf-view'),
+    path('editeazapacient/<pk>/', views.editeazapacient, name = 'editeazapacient'),
+    path('fise-pacienti/', views.FisaPacientListView.as_view(), name = 'fisa-pacient-list-view'),
+    path('pdf-fisa/<pk>/', views.fisaPacientView, name = 'fisa-pacient-view'),
+    path('fisa-consultatii/<pk>', views.fisaConsultatii, name = 'fisa-consultatii'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

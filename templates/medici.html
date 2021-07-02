@@ -100,44 +100,44 @@
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Programări</h2>
-                <p>Adaugă sau modifică programări</p>
+                <p>Adaugă o programare</p>
                 <p><a class="btn btn-secondary" href="#programari" role="button">Accesează programările</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Pacienți</h2>
-                <p>Adaugă sau modifică datele unui pacient</p>
+                <p>Adaugă un pacient</p>
                 <p><a class="btn btn-secondary" href="#pacienti" role="button">Accesează pacienții</a></p>
               </div>
               <div class="col py-3">
-                <h2 class="text-muted">Fișe pacienți</h2>
-                <p>Adaugă sau modifică fișa unui pacient</p>
-                <p><a class="btn btn-secondary" href="#fise" role="button">Accesează fișele</a></p>
+                <h2 class="text-muted">Consultații pacienți</h2>
+                <p>Adaugă o consultație</p>
+                <p><a class="btn btn-secondary" href="#fise" role="button">Accesează consultațiile</a></p>
               </div>
             </div>
 
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Diagnostice</h2>
-                <p>Adaugă sau modifică un diagnostic</p>
+                <p>Adaugă un diagnostic</p>
                 <p><a class="btn btn-secondary" href="#diagnostice" role="button">Accesează diagnosticele</a></p>
               </div>
 
               <div class="col py-3">
                 <h2 class="text-muted">Tratamente</h2>
-                <p>Adaugă sau modifică un tratament</p>
+                <p>Adaugă un tratament</p>
                 <p><a class="btn btn-secondary" href="#tratamente" role="button">Accesează tratamentele</a></p>
               </div>
               <div class="col py-3">
                 <h2 class="text-muted">Produse</h2>
-                <p>Adaugă sau modifică un produs</p>
+                <p>Adaugă un produs</p>
                 <p><a class="btn btn-secondary" href="#produse" role="button">Accesează pacienții</a></p>
               </div>
             </div>
             <div class="row">
               <div class="col py-3">
                 <h2 class="text-muted">Facturi</h2>
-                <p>Adaugă sau modifică o factură</p>
+                <p>Adaugă o factură</p>
                 <p><a class="btn btn-secondary" href="#facturi" role="button">Accesează facturile</a></p>
               </div>
               <div class="col py-3">
@@ -174,7 +174,7 @@
                 <th scope="col">Medic</th>
                 <th scope="col">Asistent</th>
                 <th scope="col">Status</th>
-                    <th scope="col">Acțiuni</th>
+                    <!-- <th scope="col">Acțiuni</th> -->
               </tr>
             </thead>
 
@@ -188,7 +188,7 @@
                 <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
                 <td>{{ programare.asistent.nume_de_familie }} {{ programare.asistent.prenume }}</td>
                 <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
-                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
               </tr>
               {% endfor %}
             </tbody>
@@ -210,7 +210,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Telefon</th>
                 <th scope="col">Status</th>
-                  <th scope="col">Acțiuni</th>
+                  <!-- <th scope="col">Acțiuni</th> -->
               </tr>
             </thead>
 
@@ -225,7 +225,7 @@
                 <td>{% if pacient.email %} {{ pacient.email }} {% else %} - {% endif %}</td>
                 <td>{% if pacient.numar_de_telefon %} {{ pacient.numar_de_telefon }} {% else %} - {% endif %}</td>
                 <td>{% if pacient.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-                  <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                  <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
               </tr>
               {% endfor %}
             </tbody>
@@ -233,18 +233,20 @@
 
         </div>
         <div class="row  py-5" id='fise'>
-          <h4>Fise pacienti:</h4>
+          <h4>Consultații pacienți:</h4>
               <div class="col-lg-12">
-  <a href="/adaugafisa" class="btn btn-info btn-lg">Adaugă fișă</a>
+  <a href="/adaugafisa" class="btn btn-info btn-lg">Adaugă consultație</a> <a href="/fise-pacienti" class="btn btn-info btn-lg">Vizualizează fișele pacienților</a>
 </div>
           <br/>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Fisa</th>
+                <th scope="col">Pacient</th>
+                      <th scope="col">CNP</th>
+                      <th scope="col">Data și ora</th>
                 <th scope="col">Status</th>
-                    <th scope="col">Acțiuni</th>
+                    <!-- <th scope="col">Acțiuni</th> -->
               </tr>
             </thead>
 
@@ -253,9 +255,11 @@
               <tr>
 
                 <th scope="row"> {{ forloop.counter }}</th>
-                <td>{{ fisa }}</td>
-                <td>{% if fisa.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-                        <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                <td>{{ fisa.pacient.nume_de_familie }} {{ fisa.pacient.prenume }}</td>
+                  <td>{{ fisa.pacient.cnp }}</td>
+                              <td>{{ fisa.programare.data_si_ora }}</td>
+                <td>{% if fisa.status %}EFECTUATA{% else %}NEONORATA{% endif %}</td>
+                        <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
 
               </tr>
               {% endfor %}
@@ -276,7 +280,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Denumire</th>
                                 <th scope="col">Status</th>
-                                          <th scope="col">Acțiuni</th>
+                                          <!-- <th scope="col">Acțiuni</th> -->
               </tr>
             </thead>
 
@@ -287,7 +291,7 @@
                 <th scope="row"> {{ forloop.counter }}</th>
                 <td>{{ diagnostic.denumire }}</td>
                 <td>{% if diagnostic.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
               </tr>
               {% endfor %}
             </tbody>
@@ -306,7 +310,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Denumire</th>
                 <th scope="col">Status</th>
-                          <th scope="col">Acțiuni</th>
+                          <!-- <th scope="col">Acțiuni</th> -->
               </tr>
             </thead>
 
@@ -317,7 +321,7 @@
                 <th scope="row"> {{ forloop.counter }}</th>
                 <td>{{ tratament.denumire }}</td>
                 <td>{% if tratament.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
               </tr>
               {% endfor %}
             </tbody>
@@ -337,7 +341,7 @@
                 <th scope="col">Denumire</th>
                 <th scope="col">Cantitate</th>
                 <th scope="col">Status</th>
-                  <th scope="col">Acțiuni</th>
+                  <!-- <th scope="col">Acțiuni</th> -->
               </tr>
             </thead>
 
@@ -349,7 +353,7 @@
                 <td>{{ produs.denumire }}</td>
                 <td>{{ produs.cantitate }}</td>
                 <td>{% if produs.status %}ACTIV{% else %}INACTIV{% endif %}</td>
-                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
               </tr>
               {% endfor %}
             </tbody>
@@ -370,7 +374,7 @@
                 <th scope="col">Serie factură</th>
                 <th scope="col">Pacient</th>
                 <th scope="col">Status</th>
-                          <th scope="col">Acțiuni</th>
+                          <!-- <th scope="col">Acțiuni</th> -->
 
               </tr>
             </thead>
@@ -384,7 +388,7 @@
                 <td>{{ factura.serie_factura }}</td>
                 <td>{{ factura.pacient.nume_de_familie }} {{ factura.pacient.prenume }}</td>
                 <td>{% if factura.status %}EMISA{% else %}ANULATA{% endif %}</td>
-                <td><a href="#" class="btn btn-info btn-lg">Editează</a></td>
+                <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
 
               </tr>
               {% endfor %}
