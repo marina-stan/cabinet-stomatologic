@@ -218,10 +218,10 @@ Adresa: Soseaua Zambetelor, Nr 3.14,<br />
                 <td>
 									{% if factura.notes %}Note:
 									{{ factura.notes}}
-									{% else %}</br></br{% endif %}
+									{% else %}<br><br>{% endif %}
 
                 </td>
-    </br></br>
+    <br><br>
                 <td>
 
                 </td>
@@ -238,7 +238,7 @@ Adresa: Soseaua Zambetelor, Nr 3.14,<br />
 
                 </td>
                 <td>
-                  Total:
+                  Total:{% if factura.total_plata %} 50 lei {% endif %}
 
                 </td>
               </tr>

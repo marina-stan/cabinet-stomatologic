@@ -159,7 +159,7 @@ class Factura(models.Model):
         return self.preety_date()  + " " + self.pacient.nume_de_familie + " " + self.pacient.prenume
 
     def total_plata(self):
-        print(self.produs.pret_unitar * self.cantitate)
+        print("Totalul de plata este: " + str(self.produs.pret_unitar * self.cantitate))
         return str(self.produs.pret_unitar * self.cantitate)
 
 
