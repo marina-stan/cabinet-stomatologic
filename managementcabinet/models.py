@@ -159,8 +159,8 @@ class Factura(models.Model):
         return self.preety_date()  + " " + self.pacient.nume_de_familie + " " + self.pacient.prenume
 
     def total_plata(self):
-        print("Totalul de plata este: " + str(self.produs.pret_unitar * self.cantitate))
-        return str(self.produs.pret_unitar * self.cantitate)
+        print("Totalul de plata este: " + str(self.produs.pret_unitar * self.cantitate + int(self.tratament.notes)))
+        return self.produs.pret_unitar * self.cantitate + int(self.tratament.notes)
 
 
 class FisaPacient(models.Model):
@@ -178,3 +178,17 @@ class FisaPacient(models.Model):
 
       class Meta:
           ordering = ['programare']
+
+
+
+# class Cabinet(models.Model):
+#    denumire = models.CharField(max_length=255)
+#    locatie = models.CharField(max_length=255)
+#    notes = models.TextField(max_length=1500, default='', blank=True, null=True)
+#    status = models.BooleanField(default=True)
+#
+#    class Meta:
+#        ordering = ['denumire']
+#
+#    def __str__(self):
+#        return self.denumire

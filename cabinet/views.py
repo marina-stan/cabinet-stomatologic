@@ -254,6 +254,7 @@ def conectare(request):
         if user is not None:
             auth.login(request, user)
             if is_medic(user):
+                print("medic")
                 return render(request, 'medici.html')
             elif is_asistent(user):
                 return render(request, 'asistenti.html')
@@ -262,6 +263,7 @@ def conectare(request):
         else:
             return render(request, 'conectare.html', {'error':'*Adresa de email sau parola sunt gresite!' })
     else:
+        print("revenire in conectare")
         return render(request, 'conectare.html')
 
 
@@ -392,3 +394,10 @@ def fisaConsultatii(request):
     context = {'medici':medici, 'pacienti':pacienti, 'asistenti':asistenti, 'programari':programari, 'fise_pacienti':fise_pacienti,
                'facturi':facturi, 'diagnostice':diagnostice, 'tratamente':tratamente, 'produse':produse}
     return render(request, 'fisa-consultatii.html', context)
+
+# def valideaza_ora_programare(data_ora_curenta):
+#     lista_programari = []
+#     for programare in programari.all():
+#         lista_programari.append(programare.data_si_ora)
+#         print(lista_programari)
+#     return True

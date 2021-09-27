@@ -110,9 +110,9 @@
                 <p><a class="btn btn-secondary" href="#pacienti" role="button">Accesează pacienții</a></p>
               </div>
               <div class="col py-3">
-                <h2 class="text-muted">Consultații pacienți</h2>
+                <h2 class="text-muted">Consultații / fișe pacienți</h2>
                 <p>Adaugă o consultație</p>
-                <p><a class="btn btn-secondary" href="#fise" role="button">Accesează consultațiile</a></p>
+                <p><a class="btn btn-secondary" href="#fise" role="button">Accesează consultațiile și fișele</a></p>
               </div>
             </div>
 
@@ -149,7 +149,7 @@
               <div class="col py-3">
                 <h2 class="text-muted">Asistenți</h2>
                 <p>Vizualizează asistenții</p>
-                <p><a class="btn btn-secondary" href="#asistenti" role="button">Accesează fișele</a></p>
+                <p><a class="btn btn-secondary" href="#asistenti" role="button">Accesează asistenții</a></p>
               </div>
             </div>
 
@@ -160,7 +160,7 @@
       </br>
       <div class="container">
         <div class="row  py-5" id='programari'>
-          <h4>Programari:</h4>
+          <h4>Programări:</h4>
               <div class="col-lg-12">
 <a href="/adaugaprogramare" class="btn btn-info btn-lg">Adaugă programare</a>
 </div>
@@ -187,7 +187,7 @@
                 <td>{{ programare.pacient.nume_de_familie }} {{ programare.pacient.prenume }}</td>
                 <td>{{ programare.medic.nume_de_familie }} {{ programare.medic.prenume }}</td>
                 <td>{{ programare.asistent.nume_de_familie }} {{ programare.asistent.prenume }}</td>
-                <td>{% if programare.status %}CONFIRMATA{% else %}ANULATA{% endif %}</td>
+                <td>{% if programare.status %}CONFIRMATA{% else %}NECONFIRMATA{% endif %}</td>
                 <!-- <td><a href="#" class="btn btn-info btn-lg">Editează</a></td> -->
               </tr>
               {% endfor %}
@@ -195,7 +195,7 @@
           </table>
         </div>
         <div class="row  py-5" id='pacienti'>
-          <h4>Pacienti:</h4>
+          <h4>Pacienți:</h4>
           <div class="col-lg-12">
             <a href="/adaugapacient" class="btn btn-info btn-lg">Adaugă pacient</a>
           </div>
@@ -427,7 +427,7 @@
 
         </div>
         <div class="row  py-5" id='asistenti'>
-          <h4>Asistenti</h4>
+          <h4>Asistenți</h4>
 
           <br/>
           <table class="table">

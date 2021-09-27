@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous">
 
 		<title>Factură pacient {{factura.pacient.nume_de_familie}} {{factura.pacient.prenume}}</title>
@@ -134,7 +134,7 @@
                 <td>
                   Emitent: <br /><br />
                   {{ factura.emitent }}<br />
-				CIF: ###@@@<br />
+				CIF: 999888<br />
 					Reg. com: J/40/1111/1111<br />
 Adresa: Soseaua Zambetelor, Nr 3.14,<br />
 	Banca Fiscala
@@ -201,7 +201,7 @@ Adresa: Soseaua Zambetelor, Nr 3.14,<br />
             <table>
               <tr>
                 <td>
-                Manopera:
+                Tratament:
                 </td>
                 <td>
                   {{ factura.tratament }}
@@ -210,25 +210,39 @@ Adresa: Soseaua Zambetelor, Nr 3.14,<br />
             </table>
           </td>
         </tr>
-
-        <tr class="information">
+				<tr class="total">
           <td colspan="2">
             <table>
               <tr>
                 <td>
-									{% if factura.notes %}Note:
-									{{ factura.notes}}
-									{% else %}<br><br>{% endif %}
-
+                Manopera:
                 </td>
-    <br><br>
                 <td>
-
+                  {{ factura.tratament.notes }}
                 </td>
               </tr>
             </table>
           </td>
         </tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									{% if factura.notes %}Note:
+									{{ factura.notes}}
+									{% else %}<br><br>{% endif %}
+
+								</td>
+			<br><br>
+								<td>
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 
         <tr class="total">
           <td colspan="2">
@@ -238,7 +252,7 @@ Adresa: Soseaua Zambetelor, Nr 3.14,<br />
 
                 </td>
                 <td>
-                  Total:{% if factura.total_plata %} 50 lei {% endif %}
+                  Total: {% if factura.total_plata %} {{factura.total_plata}} lei{% else %} 150 lei{% endif %}
 
                 </td>
               </tr>
